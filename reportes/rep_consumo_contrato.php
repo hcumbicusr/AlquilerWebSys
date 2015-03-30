@@ -21,6 +21,14 @@ $input = "$detalle";
 
 $misDatos = $objDB->selectManager()->spSelect($con, "sp_REP_consumo_detal", $input); //DATOS DE LA TABLA
 
+//-----Horometro anterior
+$con = $objDB->selectManager()->connect();
+$input = "'".$misDatos[0]['f_alquiler']."',".$misDatos[0]['id_vehiculo'];
+$horom = $objDB->selectManager()->spSelect($con, "sp_horometro_anterior", $input); //Horometro
+$horom_ant = $horom[0]['horom_ant']; // horometro anterior a este reporte
+$petroleo_ant = $horom[0]['petroleo']; // petroleo anterior
+//--------------------------------fin horom
+
 //die(var_dump($misDatos));
 $operario[] = "";
 $cliente = $misDatos[0]['cliente'];
@@ -140,7 +148,10 @@ if(count($misDatos) > 0 ){
         $hr_consumo = 0;
         $rendimiento = 0;
         $valor = 0;
-        
+        //--> Horometro de abastecimiento anterior a esta obra
+        $objPHPExcel->setActiveSheetIndex(0)  
+                ->setCellValue('G'.($i-1),  $petroleo_ant)
+                ->setCellValue('H'.($i-1),  $horom_ant);
         for ($j = 0; $j < count($misDatos); $j++) {
             //var_dump("<- $j -> ".$misDatos[$j-1]['horom_abast']);            
             // -------> eq = 0

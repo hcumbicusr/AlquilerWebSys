@@ -120,14 +120,14 @@
                                     <p class="help-block">Tipo de trabajador.</p>
                                 </div>
                                 <div class="form-group">
-                                    <label>Fecha de nacimineto: <label style="color: #FF0000">(*)</label> </label>
+                                    <label>Fecha de nacimiento: <label style="color: #FF0000">(*)</label> </label>
                                     <input type="text" id="fecha_nac" name="fecha_nac" class="form-control fechas" placeholder="dd/mm/yyyy" maxlength="10" required>
                                     <p class="help-block">Fecha de nacimiento.</p>
                                 </div>
                                 <div class="form-group">
                                     <label>DNI: <label style="color: #FF0000">(*)</label> </label>
                                     <input id="dni" name="dni" class="form-control" placeholder="Nro DNI" onkeypress="ValidaSoloNumeros();" maxlength="8" required>
-                                    <p class="help-block">DNI.</p>
+                                    <p id="dniMsg" class="help-block">DNI.</p>
                                 </div>
                                 <div class="form-group">
                                     <label>RUC: </label>
@@ -157,7 +157,7 @@
                                 </div>
                                 <div> <label style="color: #FF0000">(*) Datos obligatorios</label></div>
                                     
-                                <button type="submit" class="btn btn-default">Guardar</button>
+                                <button id="btnRegTrab" type="submit" class="btn btn-default">Guardar</button>
                                 <button type="reset" class="btn btn-default">Limpiar todo</button>
                             </form>
                         </div>

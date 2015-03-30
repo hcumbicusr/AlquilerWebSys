@@ -17,19 +17,19 @@
         }
         
         function NumCheck(e, field) {
-            key = e.keyCode ? e.keyCode : e.which
-            if (key == 8) return true
+            key = e.keyCode ? e.keyCode : e.which;
+            if (key == 8) return true;
             if (key > 47 && key < 58) {
-              if (field.value == "") return true
-              regexp = /.[0-9]{10}$/
-              return !(regexp.test(field.value))
+              if (field.value == "") return true;
+              regexp = /.[0-9]{10}$/;
+              return !(regexp.test(field.value));
             }
             if (key == 46) {
-              if (field.value == "") return false
-              regexp = /^[0-9]+$/
-              return regexp.test(field.value)
+              if (field.value == "") return false;
+              regexp = /^[0-9]+$/;
+              return regexp.test(field.value);
             }
-            return false
+            return false;
           }
         //validar longitud de cadena
         function validarForm(formulario) {            
@@ -137,7 +137,7 @@
                                     <p class="help-block">Tipo de trabajador.</p>
                                 </div>
                                 <div class="form-group">
-                                    <label>Fecha de nacimineto: <label style="color: #FF0000">(*)</label> </label>
+                                    <label>Fecha de nacimiento: <label style="color: #FF0000">(*)</label> </label>
                                     <input type="text" id="fecha_nac" value="<?php echo $fecha; ?>" name="fecha_nac" class="form-control fechas" placeholder="dd/mm/yyyy" maxlength="10" required>
                                     <p class="help-block">Fecha de nacimiento.</p>
                                 </div>

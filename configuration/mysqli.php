@@ -26,7 +26,7 @@ class Class_Mysqli implements interfaceDb{
             }
         }
         return $data;
-    }
+    }        
     
     public function insert($con,$query) {
         $result = false;   

@@ -1,0 +1,130 @@
+﻿CALL sp_registro_trabajador(
+1,'::1','Google Chrome','Windows',
+'salazar medina','ángel','1987-03-10','03067233','','',3,3,'',
+@salida);
+SELECT @salida;
+--
+CALL sp_registro_obra(
+1,'::1','Google Chrome','Windows',
+3,'obra realizada para pruebas',
+@salida);
+SET @salida = true;
+SELECT @salida;
+--
+CALL sp_registro_cliente(
+1,'::1','Google Chrome','Windows',
+4,'2134233423','grupo constructor abc','zona industrial piura','203040',
+@salida);
+SELECT @salida;
+--
+CALL sp_registro_contrato(
+1,'::1','Google Chrome','Windows',
+5,4,'2015-03-01','0000-00-00',0,'Descripción inicial de contrato',
+@salida);
+SELECT @salida;
+--
+CALL sp_registro_detalle_alquiler_v(
+1,'::1','Google Chrome','Windows',
+4,17,0,'2015-03-01','','trabajo sobre obra de prueba n1',
+@salida);
+SELECT @salida;
+--
+CALL sp_registro_devolucion_vehiculo(
+1,'::1','Google Chrome','Windows',
+16,'','elección por equivocación','2015-03-26',
+@salida);
+SELECT @salida;
+--
+CALL sp_registro_asigna_operario(
+1,'::1','Google Chrome','Windows',
+15,4,'2015-01-01',
+@salida);
+SELECT @salida;
+--
+CALL sp_anular_alquiler_vehiculo(
+1,'::1','Google Chrome','Windows',
+17,
+@salida);
+SELECT @salida;
+--
+CALL sp_registro_parte_maquinaria(
+1,'::1','Google Chrome','Windows',
+14,'RAMOSSANTOS',15,'2321','2015-01-03','pampa',
+'una labor de esta obra xy',0,0,0,0,0,0,0,'','C',0,1200,1209,9,9,0,
+@salida);
+SELECT @salida;
+--
+CALL sp_registro_control_combustible(
+1,'::1','Google Chrome','Windows',
+14,'RAMOSSANTOS','2015-01-03','002-0018740','0001','surtidor n1',30,1202,0,
+@salida);
+SELECT @salida;
+--
+CALL sp_registro_vehiculos(
+1,'::1','Google Chrome','Windows',
+1,1,'0.26','maquinaria mod 3 de prueba cat001','mod3','ser0001','mot0001','amarillo con negro','000-00',245,0,0,
+@salida);
+SELECT @salida;
+--
+CALL sp_registro_mantenimiento(
+1,'::1','Google Chrome','Windows',
+17,'mantenimiento fin de jornada','mantenimiento fin de jornada RETROEXCAVADORA Nro 02[420D][FDP25583][ ]','','plataforma',1209,1500,'2015-01-03','2015-01-04','mantenimiento preventivo',0,
+@salida);
+SELECT @salida;
+--
+CALL sp_editar_articulo(
+1,'::1','Google Chrome','Windows',
+2,1,1,'00002','artículo nro 02','ARTÍCULO NRO 02',125.00,
+@salida);
+SELECT @salida;
+--
+CALL sp_registro_articulos(
+1,'::1','Google Chrome','Windows',2,2,'ser0215','nuevo articulo de prueba n 01','arti 01',123,
+@salida);
+SELECT @salida;
+--
+CALL sp_registro_detalle_abastecimiento(
+1,'::1','Google Chrome','Windows',
+1,'P3H-833','04','2015-01-06','002-0018741',50,'grifo',
+@salida);
+SELECT @salida;
+--
+CALL sp_registro_abastecimiento(
+1,'::1','Google Chrome','Windows',
+1,1,'2015-02-28','003-0077172','15248','Grifo para prueba en local',200,13.01,2602,
+@salida);
+SELECT @salida;
+--
+CALL sp_asignar_guias_fechas(
+1,'::1','Google Chrome','Windows',
+'003-0077172','2015-01-06','2015-01-06',
+@salida); SELECT @salida;
+--
+CALL sp_desasignar_guia(
+1,'::1','Google Chrome','Windows',
+28,
+@salida);
+SELECT @salida;
+--
+CALL sp_editar_control_combustible(
+1,'::1','Google Chrome','Windows',
+71,'MORALESJIMMY','2015-02-25','001-014923','12123','15',15.00,2007.00,0.00,
+@salida);
+SELECT @salida;
+--
+CALL sp_editar_parte_maquinaria(
+1,'::1','Google Chrome','Windows',
+17,'SANTIAGO MARCELOLUIS','12002','2015-01-01','LUGAR DE TRABAJO PARA NIV FINA EXCAVADORA SOBRE ORUGAS NRO 01','NIVELACION',0.00,25.00,0.00,0.00,0.00,0.00,0.00,'','C',0.00,2000.00,2010.00,10,10,0,
+@salida);
+SELECT @salida;
+--
+CALL sp_finalizar_contrato(
+1,'::1','Google Chrome','Windows',
+4,152488,'DESCRIPCIÓN INICIAL DE CONTRATO','2015-03-26',
+@salida); SELECT @salida;
+--
+CALL sp_finalizar_contrato(
+1,'::1','Google Chrome','Windows',
+4,0,'DESCRIPCIÓN INICIAL DE CONTRATO','2015-03-26',
+@salida);
+SELECT @salida;

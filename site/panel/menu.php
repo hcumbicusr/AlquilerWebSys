@@ -9,7 +9,7 @@
     <!-- SOLO ADMINISTRADOR -->
     <li>
         <a href="#">
-            <i class="fa fa-group fa-fw"></i> Tipos<span class="fa arrow"></span>
+            <i class="fa fa-steam fa-fw"></i> Tipos<span class="fa arrow"></span>
         </a>
         <ul class="nav nav-second-level">
             <li>

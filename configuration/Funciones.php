@@ -258,4 +258,53 @@ class Funciones {
         return $temp;   
 
   }
+  
+  /**
+   * @todo Funcion que suma letras, solo funciona desde A hasta AZ ... util para EXCEL
+   * @var CHAR letra
+   * @var INT nro aumento
+   * @return CHAR Letra adicionada
+   * 
+   */
+  
+  public static function sumaLetras($letra,$add)
+    {
+       $ret = "";
+       $a = ord("A");
+       $lim = ord("Z");
+       $nro = ord($letra);
+       $nro += $add;
+       if ($nro > $lim)// si al adicionar supera Z
+       {
+           if (1 == ($nro-$lim))
+           {
+               $ret = "A".chr($a);
+           }else
+           {            
+               $ret = "A".chr($a+$nro-$lim);
+           }        
+       }else
+       {
+           $ret = chr($nro);
+       }
+       return $ret;
+    }
+  
+    //calcula el nombre del dia de una fecha determinada
+    public static function nombreDia($fecha) //formato dd-mm-aaaa
+    {
+        $fecha = str_replace("/", "-", $fecha);
+        $fechats = strtotime($fecha); //a timestamp 
+        date("w", $fechats);
+        switch (date("w", $fechats)){ 
+            case 0: return "DOMINGO"; 
+            case 1: return "LUNES"; 
+            case 2: return "MARTES"; 
+            case 3: return "MIERCOLES"; 
+            case 4: return "JUEVES"; 
+            case 5: return "VIERNES"; 
+            case 6: return "SABADO"; 
+        }  
+    }
+  
 }

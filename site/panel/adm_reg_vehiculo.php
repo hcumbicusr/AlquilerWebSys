@@ -145,7 +145,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Rendimiento de F&aacute;brica: <label style="color: #FF0000">(*)</label></label>
-                                    <input name="rendimiento" id="rendimiento" class="form-control"  placeholder="Rendimiento" required maxlength="10" >
+                                    <input name="rendimiento" id="rendimiento" class="form-control"  placeholder="00.00" onkeypress="return NumCheck(event,this);" required maxlength="10" >
                                     <p class="help-block">Rendimiento</p>
                                 </div>
                                 <div class="form-group">

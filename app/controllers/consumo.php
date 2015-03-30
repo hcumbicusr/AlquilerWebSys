@@ -31,7 +31,11 @@ function handler()
                    $objConsumo->setCant_combustible($_POST['cant_comb']);
                    $objConsumo->setHorometro($_POST['horometro']); 
                    $objConsumo->setKilometraje($_POST['kilometraje']);
-                   $objConsumo->setFecha($_POST['fecha']);
+                   
+                   list($dia,$mes,$anio) = explode("/", $_POST['fecha']);
+
+                   $fecha = $anio."-".$mes."-".$dia;
+                   $objConsumo->setFecha($fecha);
                    
                    $ret = $objConsumo->registrarConsumoComb();
                                
@@ -40,18 +44,18 @@ function handler()
                     if ($ret == 'OK')
                     {
                         //die(" SI ".  var_dump($ret));
-                        header("Location: ../../site/panel/ct_control_combustible.php?cliente=".$_POST['cliente']."&v=".$_POST['id_vehiculo']."&msj=".Funciones::encodeStrings('ok',2));                        
+                        header("Location: ../../site/panel/ct_control_combustible.php?cliente=".$_POST['cliente']."&v=".$_POST['id_detallealquiler']."&msj=".Funciones::encodeStrings('ok',2));                        
                     }else if(is_string($ret) && $ret == 'NO')
                     {
                        //die(" NRP ".  var_dump($ret));
-                        header("Location: ../../site/panel/ct_control_combustible.php?cliente=".$_POST['cliente']."&v=".$_POST['id_vehiculo']."&msj=".Funciones::encodeStrings($ret,2));
+                        header("Location: ../../site/panel/ct_control_combustible.php?cliente=".$_POST['cliente']."&v=".$_POST['id_detallealquiler']."&msj=".Funciones::encodeStrings($ret,2));
                     }else if (is_string($ret) && $ret == 'PARTE')
                     {
-                        header("Location: ../../site/panel/ct_control_combustible.php?cliente=".$_POST['cliente']."&v=".$_POST['id_vehiculo']."&msj=".Funciones::encodeStrings($ret,2));
+                        header("Location: ../../site/panel/ct_control_combustible.php?cliente=".$_POST['cliente']."&v=".$_POST['id_detallealquiler']."&msj=".Funciones::encodeStrings($ret,2));
                     }else
                     {
                         //die("NO");
-                        header("Location: ../../site/panel/ct_control_combustible.php?cliente=".$_POST['cliente']."&v=".$_POST['id_vehiculo']."&msj=".Funciones::encodeStrings('no',2));                        
+                        header("Location: ../../site/panel/ct_control_combustible.php?cliente=".$_POST['cliente']."&v=".$_POST['id_detallealquiler']."&msj=".Funciones::encodeStrings('no',2));                        
                     }
                     //die(var_dump($_POST));
                 }else
@@ -67,7 +71,7 @@ function handler()
                     $objConsumo = new Consumo();
                    $objConsumo->setId_consumo(Funciones::decodeStrings($_POST['id_consumo'],2));                                      
                    $objConsumo->setNro_guia(trim($_POST['nro_guia']));
-                   $objConsumo->setNro_vale(trim($_POST['nro_vale']));
+                   $objConsumo->setNro_vale(trim($_POST['nro_vale_i']));
                    $objConsumo->setNro_surtidor(trim($_POST['nro_surtidor']));
                    $objConsumo->setCant_combustible($_POST['cant_comb']);
                    $objConsumo->setHorometro($_POST['horometro']); 
@@ -86,7 +90,7 @@ function handler()
 
                    $fecha = $anio."-".$mes."-".$dia;
                    $objConsumo->setFecha($fecha);                                      
-                               
+                   
                    //die(var_dump($ret));
                    $ret = $objConsumo->editarConsumoComb();
                    

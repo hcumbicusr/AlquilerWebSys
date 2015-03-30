@@ -34,7 +34,7 @@ function table ()
             <form role="form" method="POST" 
                   action="./../../app/controllers/detalle_abastecimiento.php?event=desasignar">
                 <input type="hidden" name="det_abast" value="<?php echo Funciones::encodeStrings($select[$i]['id_detalleabastecimiento'], 2); ?>">
-                <button type="submit" class="btn btn-adn" style="color: #FF0000;"><i class="fa fa-times fa-fw"></i>Desasignar</button>   
+                <button type="submit" class="btn btn-adn" style="color: #FF0000;" title="DESASIGNAR"><i class="fa fa-times fa-fw"></i>Desasignar</button>   
             </form>                
            <?php }
             ?>
@@ -44,6 +44,5 @@ function table ()
      
    <?php }      
    ?>
-    <label style="color: #0000FF">Stock: <strong><?php echo $count; ?> GLN</strong></label>
        <?php
     } ?>   

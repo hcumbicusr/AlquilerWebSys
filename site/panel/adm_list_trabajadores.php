@@ -20,12 +20,13 @@
                                 <tr>
                                     <th>Nro</th>
                                     <th>Nombre</th>
-                                    <th>Fecha de Nac.</th>
+                                    <th>F. de Nac.</th>
                                     <th>DNI</th>
                                     <th>RUC</th>
                                     <th>Tel&eacute;fono</th>
                                     <th>Usuario</th>
-                                    <th>Tipo de usuario</th>
+                                    <th>T. usuario</th>
+                                    <th>T. trabajador</th>
                                     <th>Estado</th>                                    
                                     <th>Nro. Licencia</th>
                                     <th>Opciones</th>

@@ -112,7 +112,15 @@ if (empty($_SESSION['sessionID']))
                         <i class="fa fa-user fa-fw"></i> <?php echo $_SESSION['apenom']; ?> <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href=""><i class="fa fa-user fa-fw"></i> <?php echo $_SESSION['apenom']; ?></a>
+                        <li>
+                            <?php if($_SESSION['tipo_usuario'] == 'SA') { ?>
+                            <a href="../sa/panel.php">
+                            <?php }else{ ?>
+                                <a href="">
+                            <?php } ?>
+                                <i class="fa fa-user fa-fw"></i> 
+                                    <?php echo $_SESSION['apenom']; ?>
+                            </a>
                         </li>
                         <li>
                             <a href="config_user.php"><i class="fa fa-gear fa-fw"></i> <?php echo "NIVEL "." [".$_SESSION['tipo_usuario']."]"; ?></a>

@@ -37,10 +37,10 @@
                 alert('Ingrese datos válidos'); 
                 return false; //devolvemos el foco
             }
-            if (formulario.nro_surtidor.value.trim().length < 3)
+            if (formulario.nro_surtidor.value.trim().length < 2)
             {
                 formulario.nro_surtidor.focus();   
-                alert('Ingrese datos válidos'); 
+                alert('Ingrese datos válidos: 2 dígitos'); 
                 return false; //devolvemos el foco
             }
             if (formulario.tarea.value.trim().length < 3)
@@ -160,7 +160,7 @@
                                 <div class="form-group">
                                     <label>Nro de Vale: <label style="color: #FF0000">(*)</label> </label>
                                     <input id="nro_vale" name="nro_vale" class="form-control" placeholder="000000"  maxlength="20" required >
-                                    <p class="help-block">N&uacute;mero de Vale.</p>
+                                    <p ID="nro_valeMsg" class="help-block">N&uacute;mero de Vale.</p>
                                 </div>
                                 <div class="form-group">
                                     <label>Nro de Surtidor: <label style="color: #FF0000">(*)</label> </label>

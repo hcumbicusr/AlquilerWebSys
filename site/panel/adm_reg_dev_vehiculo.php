@@ -5,7 +5,7 @@ function validarForm(formulario) {
            
             if (formulario.fecha_dev.value.trim().length != 10 )
             {
-                formulario.fecha_alq.focus();   
+                formulario.fecha_dev.focus();   
                 alert('Ingrese datos validos'); 
                 return false; //devolvemos el foco
             }            
@@ -33,7 +33,7 @@ function validarForm(formulario) {
                     
                     echo "Datos: <b>(".$res[0]['codigo'].") ".$res[0]['cliente']." / ".$res[0]['obra']."</b>"; 
                     
-                    $query = "SELECT v.* FROM vehiculo v "
+                    $query = "SELECT v.*,da.observacion FROM vehiculo v "
                             . "INNER JOIN detallealquiler da ON v.id_vehiculo = da.id_vehiculo "                            
                             . "WHERE da.id_detallealquiler = ".Funciones::decodeStrings($_GET['det_alq'],2);
                     
@@ -97,9 +97,9 @@ function validarForm(formulario) {
                                 <p class="help-block">Fecha de devoluci&oacute;n.</p>
                             </div>
                             <div class="form-group">
-                                <label>Obervaci&oacute;n: </label>
-                                <textarea id="observacion" name="observacion" class="form-control" placeholder="Obervaci&oacute;n" cols="6" ></textarea>
-                                <p class="help-block">Obervaci&oacute;n.</p>
+                                <label>Obervaci&oacute;n - Labor: </label>
+                                <textarea id="observacion" name="observacion" class="form-control" placeholder="Obervaci&oacute;n - Labor" cols="6" ><?php echo $result[0]['observacion'];  ?></textarea>
+                                <p class="help-block">Obervaci&oacute;n - Labor.</p>
                             </div>  
                             <div> <label style="color: #FF0000">(*) Datos obligatorios</label></div>
                             <button type="submit" class="btn btn-default">Guardar</button>

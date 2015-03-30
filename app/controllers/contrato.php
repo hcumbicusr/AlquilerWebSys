@@ -27,12 +27,11 @@ function handler()
                     }else
                     {
                         list($dia,$mes,$anio) = explode("/", $_POST['f_fin']);
-                        $hasta = $anio."-".$mes."-".$dia;
-
-                        $objContrato->setF_inicio($desde);
+                        $hasta = $anio."-".$mes."-".$dia;                       
 
                         $objContrato->setF_fin($hasta);
                     }     
+                    $objContrato->setF_inicio($desde);
                     
                     if (empty($_POST['presupuesto']))
                     {
@@ -70,10 +69,17 @@ function handler()
                     $f_inicio = $anio."-".$mes."-".$dia;                  
                     $objContrato->setF_inicio($f_inicio);
                     
-                    list($dia,$mes,$anio) = explode("/", $_POST['f_fin']);
-                    $f_fin = $anio."-".$mes."-".$dia;                                        
+                    if (empty($_POST['f_fin'])) // f_fin no establecida
+                    {
+                        $objContrato->setF_fin('0000-00-00');
+                    }else
+                    {
+                        list($dia,$mes,$anio) = explode("/", $_POST['f_fin']);
+                        $hasta = $anio."-".$mes."-".$dia;                       
+
+                        $objContrato->setF_fin($hasta);
+                    }
                     
-                    $objContrato->setF_fin($f_fin);
                     $objContrato->setPresupuesto($_POST['presupuesto']);
                     $objContrato->setDetalle(trim($_POST['detalle']));
                     $objContrato->setId_contrato(Funciones::decodeStrings($_POST['id_contrato'], 2));
@@ -94,6 +100,44 @@ function handler()
                     header("Location: ../../site/panel/");
                 }                
                 break; 
+        case 'finalizar': 
+                if (!empty($_POST))
+                {
+                    session_start();
+                    $objContrato = new Contrato();                    
+                    
+                    list($dia,$mes,$anio) = explode("/", $_POST['fecha_fin']);
+                    $hasta = $anio."-".$mes."-".$dia;                       
+
+                    $objContrato->setF_fin($hasta);
+                    
+                    if (empty($_POST['presupuesto']))
+                    {
+                        $objContrato->setPresupuesto(0);
+                    }else
+                    {
+                        $objContrato->setPresupuesto($_POST['presupuesto']);
+                    }
+                    
+                    $objContrato->setDetalle(trim($_POST['observacion']));
+                    $objContrato->setId_contrato(Funciones::decodeStrings($_POST['contrato'], 2));
+                    $contrato = $_POST['contrato'];
+                    //die(var_dump($objContrato));
+                    //die(var_dump($objContrato->getId_cliente()));
+                    
+                    if ($objContrato->finalizarContrato())
+                    {
+                        header("Location: ../../site/panel/adm_finaliza_contrato.php?contrato=$contrato&msj=".Funciones::encodeStrings("ok",2));                        
+                    }else
+                    {
+                        header("Location: ../../site/panel/adm_finaliza_contrato.php?contrato=$contrato&msj=".Funciones::encodeStrings("no",2));                        
+                    }
+                    //die(var_dump($_POST));
+                }else
+                {                    
+                    header("Location: ../../site/panel/");
+                }                
+                break;
             
         }
     }

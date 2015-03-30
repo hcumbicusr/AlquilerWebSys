@@ -12,19 +12,19 @@
         }
         
         function NumCheck(e, field) {
-            key = e.keyCode ? e.keyCode : e.which
-            if (key == 8) return true
+            key = e.keyCode ? e.keyCode : e.which;
+            if (key == 8) return true;
             if (key > 47 && key < 58) {
-              if (field.value == "") return true
-              regexp = /.[0-9]{10}$/
-              return !(regexp.test(field.value))
+              if (field.value == "") return true;
+              regexp = /.[0-9]{10}$/;
+              return !(regexp.test(field.value));
             }
             if (key == 46) {
-              if (field.value == "") return false
-              regexp = /^[0-9]+$/
-              return regexp.test(field.value)
+              if (field.value == "") return false;
+              regexp = /^[0-9]+$/;
+              return regexp.test(field.value);
             }
-            return false
+            return false;
           }
         //validar longitud de cadena
         function validarForm(formulario) {            
@@ -133,7 +133,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Nro de Vale: <label style="color: #FF0000">(*)</label> </label>
-                                    <input id="nro_vale" name="nro_vale" value="<?php echo $result[0]['nro_vale']; ?>" class="form-control" placeholder="000000"  maxlength="20" required >
+                                    <input id="nro_vale_i" name="nro_vale_i" value="<?php echo $result[0]['nro_vale']; ?>" class="form-control" placeholder="000000"  maxlength="20" required >
                                     <p class="help-block">N&uacute;mero de Vale.</p>
                                 </div>
                                 <div class="form-group">

@@ -92,7 +92,7 @@ class Usuario {
         $objDB = new Class_Db();
         $con = $objDB->selectManager()->connect();
         $browser = Funciones::DatosBrowser();
-        $procedure = "sp_sesion";
+        $procedure = "sp_sesion";        
         //$input ="'".$this->getUsuario()."','".md5($this->getClave())."'";
         $input ="'"
                 .$this->getNombre()

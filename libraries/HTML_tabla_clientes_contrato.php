@@ -18,12 +18,20 @@ function table ()
         <td><?php echo $select[$i]['tipoobra']; ?></td>              
         <td><?php echo $select[$i]['f_inicio']; ?></td>
         <td><?php echo $select[$i]['f_fin']; ?></td>                                  
-        <td align="center">   <!-- ?cliente == id_contrato -->         
+        <td align="center">   <!-- ?cliente == id_contrato --> 
+            <?php if ($select[$i]['estado_con'] == 'B') { ?>
+            <a href="#" 
+               class="btn btn-danger" alt="<?php echo $select[$i]['nombre']; ?>" disabled
+               title="<?php echo $select[$i]['nombre']; ?>" >
+                Contrato Finalizado
+            </a><br>
+            <?php }else { ?>
             <a href="ct_list_vehiculos_asig.php?cliente=<?php echo Funciones::encodeStrings($select[$i]['id_contrato'],2); ?>" 
                class="btn btn-primary" alt="<?php echo $select[$i]['nombre']; ?>" 
                title="<?php echo $select[$i]['nombre']; ?>" >
                 Ver maquinaria
             </a><br>
+            <?php } ?>
         </td>        
     </tr>
      

@@ -187,13 +187,41 @@
                     {
                         $("#msg_operario").text("OK").css("color","#0000FF");
                         $("#btn_control").attr("disabled",false);
-                    }                    
+                    }  
+                    if ($("#trabajador").val().trim().length < 5)
+                    {                                        
+                        $("#btn_control").attr("disabled",true); 
+                        $("#msg_operario").text("Ingrese un nombre válido").css("color","#FF0000");
+                    }
                 }
-            });
-            if ($("#trabajador").val().trim().length < 5)
-            {                                        
-                $("#btn_control").attr("disabled",true);                        
-            }
+            });            
+        });
+        
+        $("#dni").blur(function(){
+            var request = $.ajax({
+                method: 'post',
+                url: '../../libraries/valida_nombre.php',
+                data:{
+                    event: 'trabajador',
+                    nombre: $("#dni").val()
+                },
+                success:function(result){                    
+                    if (result == 0)
+                    {                                                                                               
+                        $("#btnRegTrab").attr("disabled",false);                        
+                        $("#dniMsg").text("OK").css("color","#0000FF");
+                    }else if (result == 1)
+                    {                        
+                        $("#dniMsg").html("Este dni ya se ha registrado<br><a href='adm_list_trabajadores.php#"+$("#dni").val()+"' target='_blank'>Ver Resgistros</a>").css("color","#FF0000");
+                        $("#btnRegTrab").attr("disabled",true);
+                    }  
+                    if ($("#dni").val().trim().length < 8)
+                    {                                        
+                        $("#btnRegTrab").attr("disabled",true);
+                        $("#dniMsg").text("Ingrese un DNI válido").css("color","#FF0000");
+                    }
+                }
+            });            
         });
         
          $("#nro_guia").blur(function(){
@@ -214,6 +242,62 @@
                         $("#msg_nro_guia").text("OK").css("color","#0000FF");
                         $("#btn_control").attr("disabled",false);
                     }                    
+                }
+            });
+        });
+        
+        $("#nro_parte").blur(function(){
+            var request = $.ajax({
+                method: 'post',
+                url: '../../libraries/valida_nombre.php',
+                data:{
+                    event: 'parte',
+                    nombre: $("#nro_parte").val()
+                },
+                success:function(result){                    
+                    if (result == 0)
+                    {                                                                        
+                        $("#btn_control").attr("disabled",false);                             
+                        $("#nro_parteMsg").text("OK").css("color","#0000FF");
+                    }else if (result == 1)
+                    {
+                        $("#nro_parteMsg").html("Ya se ha registrado un parte con este número<br><a href='ct_list_trabajo.php#"+$("#nro_parte").val()+"' target='_blank'>Revisar registro de parte diario</a>").css("color","#FF0000");                        
+                        $("#btn_control").attr("disabled",true);
+                    }
+                    if ($("#nro_parte").val().trim().length == 0)
+                    {
+                        $("#nro_parteMsg").html("Debe ingresar un valor").css("color","#FF0000"); 
+                        $("#nro_parte").focus();
+                        $("#btn_control").attr("disabled",true);
+                    }
+                }
+            });
+        });
+        
+        $("#nro_vale").blur(function(){
+            var request = $.ajax({
+                method: 'post',
+                url: '../../libraries/valida_nombre.php',
+                data:{
+                    event: 'vale',
+                    nombre: $("#nro_vale").val()
+                },
+                success:function(result){                    
+                    if (result == 0)
+                    {                                                                        
+                        $("#btn_control").attr("disabled",false);                             
+                        $("#nro_valeMsg").text("OK").css("color","#0000FF");
+                    }else if (result == 1)
+                    {
+                        $("#nro_valeMsg").html("Ya se ha registrado un vale con este número<br><a href='ct_list_combustible.php#"+$("#nro_vale").val()+"' target='_blank'>Revisar registro de vale de consumo</a>").css("color","#FF0000");                        
+                        $("#btn_control").attr("disabled",true);
+                    }  
+                    if ($("#nro_vale").val().trim().length == 0)
+                    {
+                        $("#nro_valeMsg").html("Debe ingresar un valor").css("color","#FF0000"); 
+                        $("#nro_vale").focus();
+                        $("#btn_control").attr("disabled",true);
+                    }
                 }
             });
         });
@@ -394,6 +478,10 @@
               $( ".desdeFech" ).datepicker( "option", "maxDate", selectedDate );
             }
        });
+       // fecha actual por default
+       $("#fecha_dev").datepicker("setDate", "+0D");
+       $("#fecha_fin").datepicker("setDate", "+0D");
+       $("#fecha_fin").datepicker("option",'minDate', $("#fecha_inicio_contrato").val());
     });
     </script>
     <script>        
@@ -497,17 +585,33 @@
             $("#link_valoriza").html(data);            
         });
     });
+    //-------- Exportar guias
+    $("#btnExportaGuia").click(function(){           
+          var desde = $("#desde_val").val();
+          var hasta = $("#hasta_val").val();
+        $.post("../../libraries/LINK_exportar_excel.php",
+        {
+            event: 'guia',
+            desde: desde,
+            hasta: hasta
+        },        
+        function(data, status){
+            $("#link_exportar").html(data);            
+        });
+    });
     
     $("#desde_val").focus(function(){
         $("#linkValPDF").css("display","none");
         $("#linkValXLS").css("display","none");
         $("#linkValXLS_all").css("display","none");
+        $("#btnExportaGuias").css("display","none");
     });
     
     $("#hasta_val").focus(function(){
         $("#linkValPDF").css("display","none");
         $("#linkValXLS").css("display","none");
         $("#linkValXLS_all").css("display","none");
+        $("#btnExportaGuias").css("display","none");
     });
     
     $("#btnResetVal").click(function(){
@@ -515,6 +619,7 @@
         $("#linkValPDF").css("display","none");
         $("#linkValXLS").css("display","none");
         $("#linkValXLS_all").css("display","none");
+        $("#btnExportaGuias").css("display","none");
     });
     
     $("#btnRendimiento").click(function(){ 

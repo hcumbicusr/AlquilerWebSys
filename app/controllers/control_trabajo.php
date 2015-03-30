@@ -25,7 +25,11 @@ function handler()
                     
                     $objControl->setNro_parte(trim($_POST['nro_parte']));
                     $objControl->setNro_interno($_POST['nro_interno']);
-                    $objControl->setFecha($_POST['fecha']);
+                    
+                    list($dia,$mes,$anio) = explode("/",$_POST['fecha']);
+                    $fecha = $anio."-".$mes."-".$dia;
+                    $objControl->setFecha($fecha);
+                    
                     $objControl->setLugar_trabajo(trim($_POST['lugar_trabajo']));
                     $objControl->setTarea(trim($_POST['tarea']));
                     $objControl->setAgua($_POST['agua']);

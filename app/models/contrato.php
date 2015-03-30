@@ -177,6 +177,36 @@ Class Contrato {
     
      //----------------------------------------------------------------------------------------
     
+    public function finalizarContrato()
+    {
+        $val = false;
+        $objDB = new Class_Db();
+        $con = $objDB->selectManager()->connect();
+        
+        $browser = Funciones::DatosBrowser();
+        
+        $procedure = "sp_finalizar_contrato";
+        $input = "".$_SESSION['id_usuario'].","
+                ."'".$browser[0]."',"
+                ."'".$browser[2]."',"
+                ."'".$browser[1]."',"
+                ."".$this->getId_contrato().","
+                ."".$this->getPresupuesto().","
+                ."'".$this->getDetalle()."',"                
+                ."'".$this->getF_fin()."'";
+        
+        //die(var_dump($input));
+        
+        $result = $objDB->selectManager()->spAll($con, $procedure,$input);
+        //die(var_dump($result));
+        if ($result == 'OK')
+        {            
+            $val = true;
+        }
+        return $val;
+    }
+    
+    //----------------------------------------------------------------------------------------
     public function editarContrato()
     {
         $val = false;

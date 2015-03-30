@@ -15,6 +15,7 @@
                 <div class="panel-body table-responsive">
                     <div class="dataTable_wrapper">
                         <a href="ct_registro_guia.php" class="btn btn-primary" style="margin: 5px">Registrar</a>
+                        <a href="adm_exportar_guias.php" class="btn btn-primary" style="margin: 5px">Exportar excel</a>
                         <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                             <thead>
                                 <tr>
@@ -38,6 +39,7 @@
                             </tbody>
                         </table>
                         <a href="ct_registro_guia.php" class="btn btn-primary" style="margin: 5px">Registrar</a>
+                        <a href="adm_exportar_guias.php" class="btn btn-primary" style="margin: 5px">Exportar excel</a>
                     </div>
                 </div>
             </div>

@@ -3,8 +3,8 @@
 
 $objDB = new Class_Db();
 $con = $objDB->selectManager()->connect();
-
-$query = "SELECT concat(apellidos,', ',nombres) as trabajador FROM trabajador WHERE apellidos <> 'ADMIN' ORDER BY apellidos, nombres";
+// solo operarios
+$query = "SELECT concat(apellidos,', ',nombres) as trabajador FROM trabajador WHERE id_tipotrabajador = 1 ORDER BY apellidos, nombres";
 
 $result = $objDB->selectManager()->select($con, $query);
 //echo "".count($result);

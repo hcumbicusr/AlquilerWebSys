@@ -19,6 +19,7 @@ function table ()
         <td><?php echo $select[$i]['telefono']; ?></td>        
         <td><?php echo $select[$i]['usuario']; ?></td>
         <td><?php echo $select[$i]['tipo']; ?></td>
+        <td><?php echo $select[$i]['tipo_trab']; ?></td>
         <?php if($select[$i]['estado'] == 'A') { ?>
         <td>ACTIVO</td>
         <?php }else { ?>

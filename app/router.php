@@ -18,10 +18,15 @@ function handler ()
         {
             $objUsuario = new Usuario();
             $objUsuario->setNombre($_POST['username']);
-            $objUsuario->setClave($_POST['password']);
+            $objUsuario->setClave($_POST['password']);            
             if ($objUsuario->inicioSesion())
             {
-                header("Location: ../site/panel/");         
+                if ($_SESSION['tipo_usuario'] == 'SA')
+                {
+                    header("Location: ../site/sa/panel.php");
+                }  else {
+                    header("Location: ../site/panel/");
+                }
                 
             }else
             {

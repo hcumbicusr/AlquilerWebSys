@@ -8,19 +8,19 @@
         }
         
         function NumCheck(e, field) {
-            key = e.keyCode ? e.keyCode : e.which
-            if (key == 8) return true
+            key = e.keyCode ? e.keyCode : e.which;
+            if (key == 8) return true;
             if (key > 47 && key < 58) {
-              if (field.value == "") return true
-              regexp = /.[0-9]{10}$/
-              return !(regexp.test(field.value))
+              if (field.value == "") return true;
+              regexp = /.[0-9]{10}$/;
+              return !(regexp.test(field.value));
             }
             if (key == 46) {
-              if (field.value == "") return false
-              regexp = /^[0-9]+$/
-              return regexp.test(field.value)
+              if (field.value == "") return false;
+              regexp = /^[0-9]+$/;
+              return regexp.test(field.value);
             }
-            return false
+            return false;
           }
         //validar longitud de cadena
         function validarForm(formulario) {            
@@ -146,11 +146,11 @@
                                 <div class="form-group">
                                     <label>Nro de Parte: <label style="color: #FF0000">(*)</label> </label>
                                     <input id="nro_parte" name="nro_parte" class="form-control" placeholder="000000" onkeypress="ValidaSoloNumeros();" maxlength="20" required >
-                                    <p class="help-block">N&uacute;mero de parte</p>
+                                    <p id="nro_parteMsg" class="help-block">N&uacute;mero de parte</p>
                                 </div>
                                 <div class="form-group">
                                     <label>Fecha: <label style="color: #FF0000">(*)</label> </label>
-                                    <input type="date" id="fecha" name="fecha" class="form-control" placeholder="yyyy-mm-dd" maxlength="10" required >
+                                    <input type="text" id="fecha" name="fecha" class="form-control fechas" placeholder="dd/mm/yyyy" maxlength="10" required >
                                     <p class="help-block">Fecha</p>
                                 </div>
                                 <div class="form-group">

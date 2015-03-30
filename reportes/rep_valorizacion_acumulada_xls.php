@@ -351,7 +351,7 @@ if(count($misDatos) > 0 ){
             $objPHPExcel->setActiveSheetIndex(0)->mergeCells("B$n:F$n");
             $objPHPExcel->setActiveSheetIndex(0)->mergeCells("G$n:H$n");                
             $objPHPExcel->setActiveSheetIndex(0)
-                    ->setCellValue('G'.$n,  "Detracción 10% S/.")
+                    ->setCellValue('G'.$n,  "Detracción 4% S/.")
                     ->setCellValue('I'.$n,  "=ROUND(PRODUCT(I".($n-1).",0.04),2)");
             $detrac_2 = $n;
             $n++;

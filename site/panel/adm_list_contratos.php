@@ -24,7 +24,7 @@
                                     <th>Fecha Inicio</th>
                                     <th>Fecha Fin</th>
                                     <th>Presupuesto</th>
-                                    <th>Detalle</th>
+                                    <!--th>Detalle</th-->
                                     <th>Estado</th>
                                     <th>Opci&oacute;n</th>
                                 </tr>

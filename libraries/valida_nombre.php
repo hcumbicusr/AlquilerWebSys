@@ -76,4 +76,22 @@ switch ($event) {
             echo intval($result[0]['n']);
         } 
         break;
+    case 'parte': //valida si exite el parte diario
+        $parte = $_POST['nombre'];        
+        $query = "SELECT count(*) as n FROM controltrabajo WHERE nro_parte = '$parte'";        
+        $result = $objDB->selectManager()->select($con, $query);
+        echo intval($result[0]['n']);
+        break;
+    case 'vale': //valida si exite el vale de consumo del vehiculo
+        $vale = $_POST['nombre'];        
+        $query = "SELECT count(*) as n FROM consumo WHERE nro_vale = '$vale'";        
+        $result = $objDB->selectManager()->select($con, $query);
+        echo intval($result[0]['n']);
+        break;
+    case 'trabajador': //valida si exite el vale de consumo del vehiculo
+        $dni = $_POST['nombre'];        
+        $query = "SELECT count(*) as n FROM trabajador WHERE dni = '$dni'";        
+        $result = $objDB->selectManager()->select($con, $query);
+        echo intval($result[0]['n']);
+        break;
 }
