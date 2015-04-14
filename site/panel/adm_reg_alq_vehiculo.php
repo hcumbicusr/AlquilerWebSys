@@ -9,9 +9,9 @@ function validarForm(formulario) {
                 alert('Ingrese datos validos'); 
                 return false; //devolvemos el foco 
             } 
-            if (formulario.observacion.value.trim().length < 4 )
+            if (formulario.precio_alq.value.trim().length < 1 )
             {
-                formulario.observacion.focus();   
+                formulario.precio_alq.focus();   
                 alert('Ingrese datos validos'); 
                 return false; //devolvemos el foco 
             } 
@@ -20,6 +20,17 @@ function validarForm(formulario) {
 
 </script>
 <div id="page-wrapper">
+    <div class="row">
+        <?php if ($_SESSION['tipo_usuario'] != $config['typeUserAdmin']) { ?>
+        <label style="font-size: 25px; color: #FF0000; margin-left: 50px">
+            Esta operaci&oacute;n debe ser realizada por el administrador del sistema !!
+        </label>
+        <script>           
+            setInterval(function(){ window.location.href = "./"; window.close(); },3000);            
+        </script>
+        <?php } ?>
+    </div>
+    
     <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header">Alquiler de Maquinaria</h1>
@@ -40,10 +51,11 @@ function validarForm(formulario) {
                     echo "Datos: <b>(".$res[0]['codigo'].") ".$res[0]['cliente']." / ".$res[0]['obra']."</b>"; 
                     
                     $query = "SELECT v.* FROM vehiculo v WHERE v.id_vehiculo = ".Funciones::decodeStrings($_GET['v'],2);
-                    
+                    //die ($query);
                     $objDB = new Class_Db();
                     $con = $objDB->selectManager()->connect();
                     $result = $objDB->selectManager()->select($con, $query);
+                    $precio_alq = $result[0]['precio_alq'];
                     ?>
                     <br>
                     <label style="color: #0000FF">
@@ -131,10 +143,11 @@ function validarForm(formulario) {
                                 <p class="help-block">Fecha de alquiler.</p>
                             </div>
                             <div class="form-group">
-                                <label>Labor: <label style="color: #FF0000">(*)</label> </label>
-                                <textarea id="observacion" name="observacion" class="form-control" placeholder="Labor" cols="6" required ></textarea>
-                                <p class="help-block">Labor.</p>
-                            </div>  
+                                <label>Precio de alquiler: <label style="color: #FF0000">(*)</label> </label>
+                                <input id="precio_alq" name="precio_alq" value="<?php echo $precio_alq; ?>" class="form-control" placeholder="000000.00" 
+                                       required value="0" onkeypress="return NumCheck(event,this);" maxlength="15" >
+                                <p class="help-block">Precio de alquiler.</p>
+                            </div> 
                             <div> <label style="color: #FF0000">(*) Datos obligatorios</label></div>
                             <button type="submit" class="btn btn-default">Guardar</button>
                             <button type="reset" class="btn btn-default">Limpiar todo</button>

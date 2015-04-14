@@ -1,5 +1,3 @@
-<?php if ($_SESSION['tipo_usuario'] == $config['typeUserAdmin']) { ?>
-<?php } ?>
 <ul class="nav" id="side-menu">
     <li>
         <a href="./"><i class="fa fa-dashboard fa-fw"></i> Inicio</a>
@@ -132,10 +130,10 @@
                 <a href="ct_registro_comprobante.php"><i class="fa fa-edit fa-fw"></i> Registro de comprobantes</a>
             </li>
             <li>
-                <a href="ct_list_guias.php"><i class="fa fa-edit fa-fw"></i> Listar de gu&iacute;as</a>
+                <a href="ct_list_guias.php"><i class="fa fa-edit fa-fw"></i> Listado de gu&iacute;as</a>
             </li>
             <li>
-                <a href="ct_list_comprobantes.php"><i class="fa fa-edit fa-fw"></i> Listar de comprobantes</a>
+                <a href="ct_list_comprobantes.php"><i class="fa fa-edit fa-fw"></i> Listado de comprobantes</a>
             </li>            
         </ul>                 
     </li>
@@ -148,7 +146,18 @@
                 <a href="ct_list_combustible.php"><i class="fa fa-book fa-fw"></i> Control de combustible</a>
             </li>
             <li>
-                <a href="ct_list_trabajo.php"><i class="fa fa-book fa-fw"></i> Partes diarios</a>
+                <a href="#"> Partes diarios<span class="fa arrow"></span></a>
+                <ul class="nav nav-third-level">
+                    <li>
+                        <a href="ct_list_trabajo.php"> Todo</a>
+                    </li>
+                    <li>
+                        <a href="ct_historial_por_contrato.php"> Por Contrato</a>
+                    </li>
+                    <li>
+                        <a href="ct_historal_entre_fechas.php"> Entre Fechas</a>
+                    </li>
+                </ul>
             </li>
         </ul>        
     </li>
@@ -165,9 +174,7 @@
             </li> 
         </ul>
     </li>
-    
-    <?php if ($_SESSION['tipo_usuario'] == $config['typeUserAdmin']) { ?>
-    <!-- SOLO ADMINISTRADOR -->
+       
     <li>
         <a href="#">
             <i class="fa fa-th-list fa-fw"></i> Reportes<span class="fa arrow"></span>
@@ -176,20 +183,13 @@
             <li>
                 <a href="REP_valorizacion.php"><i class="fa fa-edit fa-fw"></i> Valorizaci&oacute;n acumulada</a>
             </li>
-            <!--li>
-                <a href="REP_rendimiento_vh.php"><i class="fa fa-edit fa-fw"></i> Rendimiento de veh&iacute;culos</a>
-            </li-->
+            <?php if ($_SESSION['tipo_usuario'] == $config['typeUserAdmin']) { ?>
+            <!-- SOLO ADMINISTRADOR -->
             <li>
                 <a href="REP_consumo_contrato.php"><i class="fa fa-edit fa-fw"></i> Consumo por obra</a>
             </li>
+            <?php } ?>
         </ul>
         
-    </li>    
-    <?php } ?>
-    <!--li>
-        <center>
-            <button class="btn1" id="solicita">Activar las notificaciones.</button><br>            
-        </center>
-    </li--> 
-    
+    </li>        
 </ul>   

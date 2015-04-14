@@ -15,6 +15,17 @@ function validarForm(formulario) {
 </script>
 <div id="page-wrapper">
     <div class="row">
+        <?php if ($_SESSION['tipo_usuario'] != $config['typeUserAdmin']) { ?>
+        <label style="font-size: 25px; color: #FF0000; margin-left: 50px">
+            Esta operaci&oacute;n debe ser realizada por el administrador del sistema !!
+        </label>
+        <script>           
+            setInterval(function(){ window.location.href = "./"; window.close(); },3000);            
+        </script>
+        <?php } ?>
+    </div>
+    
+    <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header">Devoluci&oacute;n de maquinaria</h1>
         </div>
@@ -97,9 +108,9 @@ function validarForm(formulario) {
                                 <p class="help-block">Fecha de devoluci&oacute;n.</p>
                             </div>
                             <div class="form-group">
-                                <label>Obervaci&oacute;n - Labor: </label>
-                                <textarea id="observacion" name="observacion" class="form-control" placeholder="Obervaci&oacute;n - Labor" cols="6" ><?php echo $result[0]['observacion'];  ?></textarea>
-                                <p class="help-block">Obervaci&oacute;n - Labor.</p>
+                                <label>Observaci&oacute;n: </label>
+                                <textarea id="observacion" name="observacion" class="form-control" placeholder="Observaci&oacute;n" cols="6" ></textarea>
+                                <p class="help-block">Observaci&oacute;n.</p>
                             </div>  
                             <div> <label style="color: #FF0000">(*) Datos obligatorios</label></div>
                             <button type="submit" class="btn btn-default">Guardar</button>

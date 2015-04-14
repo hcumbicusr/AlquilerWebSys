@@ -2,7 +2,7 @@
 <div id="page-wrapper">
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">Historial: Partes diarios registrados hasta el momento</h1>
+            <h1 class="page-header">Todos los Partes diarios registrados hasta el momento</h1>
         </div>
         <!-- /.col-lg-12 -->
     </div>
@@ -10,7 +10,7 @@
         <div class="col-lg-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    Resumen de trabajo realizado
+                    Historial de Registro >> Partes diarios >> Todos los Partes diarios registrados hasta el momento
                 </div>
                 <div class="panel-body table-responsive">
                     <div class="dataTable_wrapper">
@@ -28,7 +28,7 @@
                                     <th>Horom. Inicial</th>
                                     <th>Horom. Final</th>
                                     <th>Total H.</th>
-                                    <th>Operario</th>
+                                    <th>Operador</th>
                                     <th>Controlador</th>
                                     <th>Opciones</th>
                                 </tr>

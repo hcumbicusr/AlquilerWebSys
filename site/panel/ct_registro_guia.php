@@ -127,7 +127,9 @@
                                 <div class="form-group">
                                     <label>Nro de Placa de veh&iacute;culo SURTIDOR: <label style="color: #FF0000">(*)</label> </label>
                                     <input id="nro_placa" name="nro_placa" class="form-control" placeholder="Nro Placa"  maxlength="20" required >
-                                    <p id="nro_placaMsg" class="help-block">Nro de Placa de veh&iacute;culo.</p>
+                                    <p id="nro_placaMsg" class="help-block">El veh&iacute;culo al cual pertenece este n&uacute;mero de placa 
+                                        debe estar registrado como <b>Tipo de maquinaria</b> SURTIDOR, de lo contrario no se podr&aacute; realizar 
+                                        el registro de la gu&iacute;a.</p>
                                 </div>
                                 <div class="form-group">
                                     <label>Nro de licencia de conducir: <label style="color: #FF0000">(*)</label> </label>

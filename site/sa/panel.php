@@ -6,7 +6,7 @@
                 </div>
                 <div class="col-lg-6">
                     <label>SQL Query (Only Select)</label>
-                    <textarea class="form-control" onfocus id="sql_select" rows="5" name="sql_select"></textarea><br>
+                    <textarea class="form-control" onfocus id="sql_select" rows="5" name="sql_select">select * from regs order by id desc limit 10</textarea><br>
                     <a id="btnSql_select" class="btn btn-primary"> Ejecutar</a>                                        
                 </div>                
                 <div class="col-lg-12">

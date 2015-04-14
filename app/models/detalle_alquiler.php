@@ -9,6 +9,15 @@ Class DetalleAlquiler {
     private $fecha;
     private $estado;
     private $observacion;
+    private $precio_alq;
+
+    public function getPrecio_alq() {
+        return $this->precio_alq;
+    }
+
+    public function setPrecio_alq($precio_alq) {
+        $this->precio_alq = $precio_alq;
+    }
     
     public function getId_detallealquiler() {
         return $this->id_detallealquiler;
@@ -93,7 +102,8 @@ Class DetalleAlquiler {
                 ."".$this->getId_articulo().","
                 ."'".$this->getFecha()."',"
                 ."'".$this->getEstado()."',"
-                ."'".$this->getObservacion()."'";
+                ."'".$this->getObservacion()."',"
+                ."".$this->getPrecio_alq()."";
         
         //die(var_dump($input));
                 
@@ -125,7 +135,8 @@ Class DetalleAlquiler {
                 ."".$this->getId_articulo().","
                 ."'".$this->getFecha()."',"
                 ."'".$this->getEstado()."',"
-                ."'".$this->getObservacion()."'";
+                ."'".$this->getObservacion()."',"
+                ."".$this->getPrecio_alq()."";
         
         //die(var_dump($input));
                 

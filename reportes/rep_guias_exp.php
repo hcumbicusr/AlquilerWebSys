@@ -13,6 +13,7 @@ require '../Config.inc.php';
 include_once '../configuration/Funciones.php';
 
 //-------------------------------------------------
+// Muestra solo las guias que presentan almenos un consumo 
 $objDB = new Class_Db();
 $con = $objDB->selectManager()->connect();
 
@@ -24,7 +25,8 @@ list($dia,$mes,$anio) = explode("/", $_GET['hasta']);
 $hasta = $anio."-".$mes."-".$dia;
 
 $input = "'$desde','$hasta'";
-
+//echo "sp_listar_guias_fechas($input)";
+//die();
 $misDatos = $objDB->selectManager()->spSelect($con, "sp_listar_guias_fechas", $input); //DATOS DE LA TABLA
 
 for ($i = 0; $i < count($misDatos); $i++)
@@ -202,7 +204,7 @@ O CHEQUE"	Nº  DE GUIA	TOTAL DE INGRESADO		INGRESO	MAQUINARIA	Nº VALE	ABASTECIM
         $objPHPExcel->setActiveSheetIndex(0)->mergeCells("A".($n+1).":E".($n+1));
         $objPHPExcel->setActiveSheetIndex(0)->setCellValue('A'.($n+1),  "SALDO GLOBAL");
         
-        $objPHPExcel->setActiveSheetIndex(0)->setCellValue('L'.($n-1),  "STOCK");
+        //$objPHPExcel->setActiveSheetIndex(0)->setCellValue('L'.($n-1),  "STOCK");
         
         $objPHPExcel->setActiveSheetIndex(0)                
                 ->setCellValue('F'.$n,  "=ROUND(SUM(F".($inicio_reg-1).":F".($n-1)."),2)") // total ingresado

@@ -80,13 +80,35 @@
 
 <div id="page-wrapper">
     <div class="row">
+        <?php if ($_SESSION['tipo_usuario'] != $config['typeUserAdmin']) { ?>
+        <label style="font-size: 25px; color: #FF0000; margin-left: 50px">
+            Esta operaci&oacute;n debe ser realizada por el administrador del sistema !!
+        </label>
+        <script>           
+            setInterval(function(){ window.location.href = "./"; window.close(); },3000);            
+        </script>
+        <?php } ?>
+    </div>
+    
+    <div class="row">
+        <?php if ($_SESSION['tipo_usuario'] != $config['typeUserAdmin']) { ?>
+        <label style="font-size: 25px; color: #FF0000; margin-left: 50px">
+            Esta operaci&oacute;n debe ser realizada por el administrador del sistema !!
+        </label>
+        <script>           
+            setInterval(function(){ window.location.href = "./"; window.close(); },3000);            
+        </script>
+        <?php } ?>
+    </div>
+    
+    <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header">Registro de maquinaria</h1>
         </div>
         <!-- /.col-lg-12 -->
     </div>
     <!-- /.row -->
-    <div class="row">
+    <div class="row" id="reg_vh">
         <div class="col-lg-12">
             <div class="panel panel-default">
                 <div class="panel-heading">

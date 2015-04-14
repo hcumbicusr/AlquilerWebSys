@@ -12,19 +12,19 @@
         }
         
         function NumCheck(e, field) {
-            key = e.keyCode ? e.keyCode : e.which
-            if (key == 8) return true
+            key = e.keyCode ? e.keyCode : e.which;
+            if (key == 8) return true;
             if (key > 47 && key < 58) {
-              if (field.value == "") return true
-              regexp = /.[0-9]{10}$/
-              return !(regexp.test(field.value))
+              if (field.value == "") return true;
+              regexp = /.[0-9]{10}$/;
+              return !(regexp.test(field.value));
             }
             if (key == 46) {
-              if (field.value == "") return false
-              regexp = /^[0-9]+$/
-              return regexp.test(field.value)
+              if (field.value == "") return false;
+              regexp = /^[0-9]+$/;
+              return regexp.test(field.value);
             }
-            return false
+            return false;
           }
         //validar longitud de cadena
         function validarForm(formulario) {            
@@ -114,9 +114,9 @@
                                 </div>
                                 
                                 <div class="form-group">
-                                    <label>Operario: <label style="color: #FF0000">(*)</label>  </label>                                    
-                                    <input name="trabajador" id="trabajador" value="<?php echo $result[0]['operario']; ?>"  placeholder="Operario" class="form-control"  maxlength="200" autofocus required >                                    
-                                    <p id="msg_operario" class="help-block">Operario.</p>
+                                    <label>Operador: <label style="color: #FF0000">(*)</label>  </label>                                    
+                                    <input name="trabajador" id="trabajador" value="<?php echo $result[0]['operario']; ?>"  placeholder="Operador" class="form-control"  maxlength="200" autofocus required >                                    
+                                    <p id="msg_operario" class="help-block">Operador.</p>
                                 </div> 
                                 
                                 <div class="form-group">

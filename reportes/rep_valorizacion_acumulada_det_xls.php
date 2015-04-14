@@ -26,6 +26,8 @@ $hasta = $anio."-".$mes."-".$dia;
 
 $input = "$id,'$desde','$hasta'";
 
+//die($input);
+
 $misDatos = $objDB->selectManager()->spSelect($con, "sp_REP_valorizacion_cliente_obra_xls", $input); //DATOS DE LA TABLA
 
 $con = $objDB->selectManager()->connect();
@@ -53,7 +55,8 @@ $encabezado_tabla = array(
     'TOTAL HRS.',
     'INICIO HOROM.',
     'TÉRMINO HOROM.',
-    'LABOR'
+    'LABOR',
+    'HRS. MÍNIMAS'
 );
 
 $arr = array('[',']','/'); 
@@ -136,16 +139,16 @@ if(count($misDatos) > 0 ){  //verifica si hay datos para generar excel
         for($a = 0; $a <count($obras);$a++)
         {                        
             //------------------encabezados tabla x obra            
-            $objPHPExcel->setActiveSheetIndex($p)->mergeCells($ultima_col."5:".(Funciones::sumaLetras($ultima_col, 5))."5"); //titulo obra OBRA
-            $objPHPExcel->setActiveSheetIndex($p)->mergeCells($ultima_col."6:".(Funciones::sumaLetras($ultima_col, 5))."6"); //titulo obra: tabla BD 
-            $objPHPExcel->setActiveSheetIndex($p)->mergeCells($ultima_col."7:".(Funciones::sumaLetras($ultima_col, 5))."7"); //celda en blanco 
-            $objPHPExcel->setActiveSheetIndex($p)->mergeCells((Funciones::sumaLetras($ultima_col, 6))."5:".(Funciones::sumaLetras($ultima_col, 6))."7"); 
+            $objPHPExcel->setActiveSheetIndex($p)->mergeCells($ultima_col."5:".(Funciones::sumaLetras($ultima_col, 6))."5"); //titulo obra OBRA
+            $objPHPExcel->setActiveSheetIndex($p)->mergeCells($ultima_col."6:".(Funciones::sumaLetras($ultima_col, 6))."6"); //titulo obra: tabla BD 
+            $objPHPExcel->setActiveSheetIndex($p)->mergeCells($ultima_col."7:".(Funciones::sumaLetras($ultima_col, 6))."7"); //celda en blanco 
+            $objPHPExcel->setActiveSheetIndex($p)->mergeCells((Funciones::sumaLetras($ultima_col, 7))."5:".(Funciones::sumaLetras($ultima_col, 7))."7"); 
             //echo (Funciones::sumaLetras($ultima_col, 6))."5:".(Funciones::sumaLetras($ultima_col, 6))."7";
             $objPHPExcel->setActiveSheetIndex($p) 
                     ->setCellValue($ultima_col."5","OBRA:")
                     ->setCellValue($ultima_col."6",$obras[$a]['obra'])                
                     ->setCellValue($ultima_col."7","")//vacía
-                    ->setCellValue((Funciones::sumaLetras($ultima_col, 6))."5","Área Afectac. PPTO:");
+                    ->setCellValue((Funciones::sumaLetras($ultima_col, 7))."5","Área Afectac. PPTO:");
             
             //-------titulo tablas
             $objPHPExcel->setActiveSheetIndex($p)
@@ -155,7 +158,8 @@ if(count($misDatos) > 0 ){  //verifica si hay datos para generar excel
                     ->setCellValue((Funciones::sumaLetras($ultima_col, 3))."8",$encabezado_tabla[3])                
                     ->setCellValue((Funciones::sumaLetras($ultima_col, 4))."8",$encabezado_tabla[4])
                     ->setCellValue((Funciones::sumaLetras($ultima_col, 5))."8",$encabezado_tabla[5])
-                    ->setCellValue((Funciones::sumaLetras($ultima_col, 6))."8","");// en blanco
+                    ->setCellValue((Funciones::sumaLetras($ultima_col, 6))."8",$encabezado_tabla[9]) //---> horas minimas
+                    ->setCellValue((Funciones::sumaLetras($ultima_col, 7))."8","");// en blanco
             
             $ultima_col = $objPHPExcel->getActiveSheet()->getHighestColumn(); //G
             $ultima_col_x = $ultima_col;
@@ -527,7 +531,7 @@ for ($x = 0; $x < $cant_vh; $x++) { // resumen
         $objPHPExcel->removeSheetByIndex($p);
         // Se activa la hoja para que sea la que se muestre cuando el archivo se abre
         $objPHPExcel->setActiveSheetIndex(0);
-
+        
         // Se envia el archivo al navegador web, con el nombre que se indica (Excel2007)
         header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
         header('Content-Disposition: attachment;filename="Valorización_acumulada_DET_'.$clienteNom.'.xlsx"');

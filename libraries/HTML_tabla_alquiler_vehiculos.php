@@ -18,17 +18,17 @@ function table ($contrato)
         <td>
             <!-- si no tiene registro en trabvehiculo  -->
             
-            <a href="adm_asigna_op.php?contr=<?php echo $contrato; ?>&detal=<?php echo Funciones::encodeStrings($select[$i]['id_detallealquiler'],2); ?>" class="btn-primary form-control" 
-               title="Asignar Operario">
-                Asignar Operario
-            </a><br>            
-            <a href="adm_transporte_maquinaria.php?contr=<?php echo $contrato; ?>&detal=<?php echo Funciones::encodeStrings($select[$i]['id_detallealquiler'],2); ?>" class="btn-info form-control" >
+            <!-- a href="adm_asigna_op.php?contr=< ?php echo $contrato; ?>&detal=< ?php echo Funciones::encodeStrings($select[$i]['id_detallealquiler'],2); ?>" class="btn btn-primary form-control" 
+               title="Asignar operador">
+                Asignar operador
+            </a -->
+            <a href="adm_transporte_maquinaria.php?contr=<?php echo $contrato; ?>&detal=<?php echo Funciones::encodeStrings($select[$i]['id_detallealquiler'],2); ?>" class="btn btn-info form-control" >
                 Registrar Flete
-            </a><br>            
-            <a href="adm_anula_alquiler.php?contr=<?php echo $contrato; ?>&detal=<?php echo Funciones::encodeStrings($select[$i]['id_detallealquiler'],2); ?>" class="btn-danger form-control"
-               title="Se anula solo si no tiene asignado un operario">
+            </a><br><br>          
+            <a href="adm_anula_alquiler.php?contr=<?php echo $contrato; ?>&detal=<?php echo Funciones::encodeStrings($select[$i]['id_detallealquiler'],2); ?>" class="btn btn-danger form-control"
+               title="Se anula solo si no tiene asignado un operador">
                 Anular alquiler
-            </a><br>
+            </a><br><br>
         </td>
     </tr>
      

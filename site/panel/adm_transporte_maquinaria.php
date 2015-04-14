@@ -38,6 +38,17 @@
 
 <div id="page-wrapper">
     <div class="row">
+        <?php if ($_SESSION['tipo_usuario'] != $config['typeUserAdmin']) { ?>
+        <label style="font-size: 25px; color: #FF0000; margin-left: 50px">
+            Esta operaci&oacute;n debe ser realizada por el administrador del sistema !!
+        </label>
+        <script>           
+            setInterval(function(){ window.location.href = "./"; window.close(); },3000);            
+        </script>
+        <?php } ?>
+    </div>
+    
+    <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header"> Transporte de maquinaria</h1>
         </div>
@@ -87,15 +98,27 @@
                             $objDB = new Class_Db();
                             $con = $objDB->selectManager()->connect();                            
                             
-                            $query = "SELECT count(*) as cantidad
+                            $query = "SELECT *, date(fecha) as fech
                                         FROM transporte t                                        
-                                        WHERE t.id_detallealquiler = ".Funciones::decodeStrings($_GET['detal'],2);
+                                        WHERE t.id_detallealquiler = ".Funciones::decodeStrings($_GET['detal'],2)." ORDER BY id_transporte DESC";
                             $result = $objDB->selectManager()->select($con, $query);
+                            
+                            $fecha_mov = "";
+                            if (!empty($result[0]['fech']))
+                            {
+                                list($anio,$mes,$dia) = explode("-", $result[0]['fech']);
+                                $fecha_mov = $dia."/".$mes."/".$anio;
+                            }                                                        
+                            
+                            $cant = count($result);
+                            
                             if (!empty($result)) {
                             ?>
                             <div class="alert alert-warning">
                                 <p>
-                                    Esta unidad tiene <b>[ <?php echo $result[0]['cantidad']; ?> ]</b> registro(s) de transporte. <br>                                    
+                                    Esta unidad tiene <b>[ <?php echo $cant; ?> ]</b> registro(s) de transporte.
+                                    &Uacute;ltima vez: <?php echo $fecha_mov; ?>
+                                    <br>                                    
                                 </p>
                             </div>
                             <?php } ?>
@@ -119,10 +142,10 @@
                                     <p class="help-block">Monto.</p>
                                 </div>
                                 <div class="form-group">
-                                    <label>Fecha de movilizaci&oacute;n: <label style="color: #FF0000">(*)</label> </label>
+                                    <label>Fecha: <label style="color: #FF0000">(*)</label> </label>
                                     <input type="text" id="fecha" name="fecha" class="form-control fechas_v" 
                                            placeholder="dd/mm/yyyy" maxlength="10" required autofocus>
-                                    <p class="help-block">Fecha de movilizaci&oacute;n.</p>
+                                    <p class="help-block">Fecha.</p>
                                 </div>
                                 <div class="form-group">
                                     <label>Observaci&oacute;n:  </label>

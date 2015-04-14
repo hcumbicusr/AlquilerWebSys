@@ -54,6 +54,17 @@
 
 <div id="page-wrapper">
     <div class="row">
+        <?php if ($_SESSION['tipo_usuario'] != $config['typeUserAdmin']) { ?>
+        <label style="font-size: 25px; color: #FF0000; margin-left: 50px">
+            Esta operaci&oacute;n debe ser realizada por el administrador del sistema !!
+        </label>
+        <script>           
+            setInterval(function(){ window.location.href = "./"; window.close(); },3000);            
+        </script>
+        <?php } ?>
+    </div>
+    
+    <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header"> Editar datos de contrato</h1>
         </div>

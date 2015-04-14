@@ -15,6 +15,17 @@ function validarForm(formulario) {
 </script>
 <div id="page-wrapper">
     <div class="row">
+        <?php if ($_SESSION['tipo_usuario'] != $config['typeUserAdmin']) { ?>
+        <label style="font-size: 25px; color: #FF0000; margin-left: 50px">
+            Esta operaci&oacute;n debe ser realizada por el administrador del sistema !!
+        </label>
+        <script>           
+            setInterval(function(){ window.location.href = "./"; window.close(); },3000);            
+        </script>
+        <?php } ?>
+    </div>
+    
+    <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header">Alquiler de art&iacute;culos</h1>
         </div>
@@ -38,6 +49,7 @@ function validarForm(formulario) {
                     $objDB = new Class_Db();
                     $con = $objDB->selectManager()->connect();
                     $result = $objDB->selectManager()->select($con, $query);
+                    $precio_alq = $result[0]['precio_alq'];
                     ?>
                     <br>
                     <label style="color: #0000FF">
@@ -101,6 +113,15 @@ function validarForm(formulario) {
                 </div>
                 <div class="panel-body">
                     <div class="col-lg-6">
+                        <?php                        
+                        $con = $objDB->selectManager()->connect();
+                        $contrato = Funciones::decodeStrings($_GET['contrato'], 2);
+                        $query = "SELECT date(f_inicio) as f_inicio FROM contrato WHERE id_contrato = $contrato";                        
+                        $result = $objDB->selectManager()->select($con, $query);
+                        
+                        list($anio,$mes,$dia) = explode("-", $result[0]['f_inicio']);
+                        $fecha = $dia."/".$mes."/".$anio;
+                        ?>
                         <form role="form"  onsubmit="return validarForm(this);" method="POST" 
                               action="./../../app/controllers/detalle_alquiler.php?event=registrar_art" >
                             <div class="form-group">
@@ -112,14 +133,20 @@ function validarForm(formulario) {
                             <input type="hidden" name="articulo" id="vph" value="<?php echo $_GET['articulo']; ?>" >
                              <div class="form-group">
                                 <label>Fecha de alquiler: <label style="color: #FF0000">(*)</label> </label>
-                                <input type="text" id="fecha_alq" name="fecha_alq" class="form-control fechas_v" placeholder="dd/mm/yyyy" maxlength="10" required>
+                                <input type="text" id="fecha_alq" name="fecha_alq" value="<?php echo $fecha; ?>" class="form-control fechas_v" placeholder="dd/mm/yyyy" maxlength="10" required>
                                 <p class="help-block">Fecha de alquiler.</p>
                             </div>
                             <div class="form-group">
+                                <label>Precio de alquiler: <label style="color: #FF0000">(*)</label> </label>
+                                <input id="precio_alq" name="precio_alq" value="<?php echo $precio_alq; ?>" class="form-control" placeholder="000000.00" 
+                                       required value="0" onkeypress="return NumCheck(event,this);" maxlength="15" >
+                                <p class="help-block">Precio de alquiler.</p>
+                            </div>
+                            <!--div class="form-group">
                                 <label>Obervaci&oacute;n: </label>
                                 <textarea id="observacion" name="observacion" class="form-control" placeholder="Obervaci&oacute;n" cols="6" ></textarea>
                                 <p class="help-block">Obervaci&oacute;n.</p>
-                            </div>  
+                            </div-->  
                             <div> <label style="color: #FF0000">(*) Datos obligatorios</label></div>
                             <button type="submit" class="btn btn-default">Guardar</button>
                             <button type="reset" class="btn btn-default">Limpiar todo</button>

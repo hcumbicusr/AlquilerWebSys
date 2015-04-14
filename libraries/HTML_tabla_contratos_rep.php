@@ -1,6 +1,6 @@
 <?php
 
-function table ()
+function table ($entrada = NULL)
 { 
     $objBD = new Class_Db();
     $con = $objBD->selectManager()->connect();
@@ -18,7 +18,8 @@ function table ()
         <td><?php echo $select[$i]['tipoobra']; ?></td>              
         <td><?php echo $select[$i]['f_inicio']; ?></td>
         <td><?php echo $select[$i]['f_fin']; ?></td>                                  
-        <td align="center">   <!-- ?cliente == id_contrato -->         
+        <td align="center">   <!-- ?cliente == id_contrato -->  
+            <?php if (empty($entrada)) { ?>
             <a href="REP_consumo_vh.php?contrato=<?php echo Funciones::encodeStrings($select[$i]['id_contrato'],2); ?>" 
                class="btn btn-primary" alt="<?php echo $select[$i]['nombre']; ?>" 
                title="<?php echo $select[$i]['nombre']; ?>" >
@@ -29,6 +30,13 @@ function table ()
                title="<?php echo $select[$i]['nombre']; ?>" target="_blank" >
                 Consumo Total
             </a>
+            <?php }else if ($entrada == 'hist_contrato') { ?>
+            <a href="ct_list_partes_contrato.php?contrato=<?php echo Funciones::encodeStrings($select[$i]['id_contrato'],2); ?>" 
+               class="btn btn-primary" alt="<?php echo $select[$i]['nombre']; ?>" 
+               title="<?php echo $select[$i]['nombre']; ?>" >
+                Ver Partes
+            </a>
+            <?php } ?>
         </td>        
     </tr>
      

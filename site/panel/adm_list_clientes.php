@@ -21,10 +21,8 @@
                                     <th>Nro</th>                                                                      
                                     <th>DNI/RUC</th>
                                     <th>Nombre</th>
-                                    <th>Tipo Cliente</th>
-                                    <th>Direcci&oacute;n</th>
-                                    <th>Tel&eacute;fono</th>
-                                    <th>F. Registro</th>
+                                    <th>Tipo Cliente</th>                                    
+                                    <th>Tel&eacute;fono</th>                                    
                                     <th>Opci&oacute;n</th>
                                 </tr>
                             </thead>
@@ -37,6 +35,22 @@
                         </table>
                         <a href="adm_registro_cliente.php" class="btn btn-primary" style="margin: 5px">Registrar</a>
                     </div>
+                    
+                    
+                    <!-- Info -->
+                    <div id="popup" style="display: none;">
+                        <div class="content-popup">
+                            <div class="close">
+                                <a href="#" id="close">
+                                    <img src="../img/close.png"/>
+                                </a>
+                            </div>
+                            <div id="contenidoCliente">
+                               
+                            </div>
+                        </div>
+                    </div>
+                    
                 </div>
             </div>
         </div>

@@ -134,13 +134,13 @@
                                 </div>
                                 
                                 <div class="form-group">
-                                    <label>Operario: <label style="color: #FF0000">(*)</label>  </label>                                    
-                                    <input name="trabajador" id="trabajador"  placeholder="Operario" class="form-control"  maxlength="200" autofocus required >                                    
-                                    <p id="msg_operario" class="help-block">Operario.</p>
+                                    <label>Operador: <label style="color: #FF0000">(*)</label>  </label>                                    
+                                    <input name="trabajador" id="trabajador"  placeholder="Operador" class="form-control"  maxlength="200" autofocus required >                                    
+                                    <p id="msg_operario" class="help-block">Operador.</p>
                                 </div>                             
                                 <div class="form-group">
                                     <label>Nro Interno:  </label>
-                                    <input id="nro_interno" name="nro_interno" class="form-control" value="0" onkeypress="ValidaSoloNumeros();" placeholder="00" maxlength="2"  autofocus>
+                                    <input id="nro_interno" name="nro_interno" class="form-control" value="0" onkeypress="ValidaSoloNumeros();" placeholder="00" maxlength="5" >
                                     <p class="help-block">N&uacute;mero interno</p>
                                 </div>
                                 <div class="form-group">
@@ -203,7 +203,7 @@
                                 
                                 <div class="form-group">
                                     <label>Labor realizada: <label style="color: #FF0000">(*)</label> </label>
-                                    <input id="tarea" name="tarea" class="form-control" placeholder="Labor realizada" required>
+                                    <textarea id="tarea" name="tarea" class="form-control" placeholder="Labor realizada" required></textarea>
                                     <p class="help-block">Labor realizada.</p>
                                 </div>
                                 <div class="form-group">

@@ -27,7 +27,7 @@ function handler()
                     $objVehiculo->setPrecio_h($_POST['precio_h']);
                     $objVehiculo->setHorometro($_POST['horometro']);
                     $objVehiculo->setKilometraje($_POST['kilometraje']);
-                    
+                    //echo "<pre>";
                     //die(var_dump($_POST));
                     //die(var_dump($objVehiculo->getId_cliente()));
                     

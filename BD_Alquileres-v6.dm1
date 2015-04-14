@@ -31,7 +31,7 @@ VersionId,Version_ID,Copyright,Global_User_ID,Row_Time_Stamp
 
 Diagram
 DiagramId,Version_ID,VersionId,LastUpdate,CreateDate,ActiveModel,ActiveSubmodel,VSplitterPosition,X,Y,Width,Height,DiagramNameId,AuthorId,CompanyId,VersionNoId,CopyrightStringId,DefinitionId,UnificationOptionId,FileNameId,CopyrightYearStringId,DiagramName,CodePage,SignatureGUID,ReleaseName,Flags,Global_User_ID,Row_Time_Stamp
-1,1,800,03/26/2015 01:12:15G,01/21/2015 22:45:44G,1,1,180,0,0,0,0,7,8,9,10,9,0,11,318,0,BD_Alquileres.dm1,1252,NULL,NULL,0,1,0
+1,1,800,04/07/2015 22:34:20G,01/21/2015 22:45:44G,1,1,180,0,0,0,0,7,8,9,10,9,0,11,318,0,BD_Alquileres.dm1,1252,NULL,NULL,0,1,0
 
 Model
 DiagramId,ModelId,Model_ID,ModelType,PlatformId,NamePrefix,SpaceHandling,CaseHandling,GenPrimaryKey,GenAlternateKey,GenInversionEntry,GenForeignKey,Notation,ModelNameId,RowOverhead,TableOverhead,IndexOverhead,BlobOverhead,BlobBlockSize,Global_User_ID,Row_Time_Stamp
@@ -66,7 +66,7 @@ SubmodelLink_ID,Model_ID,Parent_ID,Child_ID,UltimateParent_ID,NodeLevel,IsBottom
 
 DiagramDisplay
 DiagramId,ModelId,SubmodelId,DiagramDisplay_ID,Submodel_ID,PlatformId,Animate,ZoomFactor,HviewSize,VviewSize,HorizontalScrollPosition,VerticalScrollPosition,PageOrientation,PageSize,DisplayFormat,EntityDisplayInfo,ViewDisplayFormat,ViewDisplayInfo,Shadow,CompleteRoleName,ShowVerbs,ShowCardinality,MethodologyId,StraightRelLine,PageBoundary,ShowViewRelationship,ShowView,HideTrigger,Global_User_ID,Row_Time_Stamp,ShowSchemaObjEdge,ShowSchemaObj,SchemaObjDisplayFormat,ShowRelationshipName,ShowLogicalRelationshipName,ShowTriggerLabel,ShowShape,ShowShapeEdge,ShowShapeName,ShowShapeEdgeName,ShowShapeEdgeVerbs,TransformationDisplayFormat
-1,1,1,1,1,0,0,8661,0,0,-414,21,1,1,8,3264,1,0,1,0,1,1,0,0,0,0,0,1,23,0,1,6,7,0,0,0,0,0,1,0,1,10
+1,1,1,1,1,0,0,8661,0,0,-413,20,1,1,8,3264,1,0,1,0,1,1,0,0,0,0,0,1,23,0,1,6,7,0,0,0,0,0,1,0,1,10
 
 GridDisplay
 DiagramId,ModelId,SubmodelId,GridDisplay_ID,Submodel_ID,Show,Snap,HorizontalSpacing,VerticalSpacing,HorizontalGridsPerLine,VericalGridsPerLine,Units,Global_User_ID,Row_Time_Stamp
@@ -873,7 +873,7 @@ DiagramId,ModelId,SubmodelId,EntityId,EntityDisplay_ID,Submodel_ID,Entity_ID,Hor
 1,1,1,28,30,1,30,-533,220,112,159,0,0,0,0,0,0,672,0
 1,1,1,29,32,1,32,-406,-97,-1,-1,0,0,0,0,0,0,740,0
 1,1,1,31,34,1,34,-274,-134,-1,-1,0,0,0,0,0,0,766,0
-1,1,1,33,36,1,36,2,199,-1,-1,0,0,0,0,0,0,808,0
+1,1,1,33,36,1,36,2,199,-1,-1,0,0,0,0,1,4874979,808,0
 1,1,1,34,37,1,37,699,-460,-1,-1,0,0,0,0,1,16373913,842,0
 1,1,1,35,38,1,38,366,-386,-1,-1,0,0,0,0,0,0,857,0
 1,1,1,36,39,1,39,-64,-462,-1,-1,0,0,0,0,1,16046988,886,0
@@ -2144,7 +2144,7 @@ Identity_Value_ID,Table_Name,Column_Name,Next_Valid_Value,Global_User_ID,Row_Tim
 14,Bound_Dictionary_Object,Bound_Dictionary_Object_ID,1,0,0
 15,CheckConstraints,CheckConstraints_ID,1,0,0
 16,Circular_Layout,Circular_Layout_ID,3,0,0
-17,ColorDefault,ColorDefault_ID,345,0,0
+17,ColorDefault,ColorDefault_ID,346,0,0
 18,Column_Usage,Column_Usage_ID,1,0,0
 19,Components_Layout,Components_Layout_ID,3,0,0
 20,Configuration_Option,Configuration_Option_ID,1,0,0

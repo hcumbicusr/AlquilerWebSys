@@ -38,7 +38,7 @@ function select ($name, $table, $class = NULL, $required = false, $selected = NU
 <?php }else { ?>
     
         <select style="color: #FF0000" name="<?php echo $name; ?>" id="<?php echo $name; ?>" class="<?php echo $class?>" <?php if ($required) echo 'required'; ?> >
-            <option value="-1">Sin registros para mostrar</option>
+            <option value="">Sin registros para mostrar</option>
         </select>
  
 <?php } 

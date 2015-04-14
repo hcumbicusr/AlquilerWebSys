@@ -84,6 +84,7 @@ Class Transporte {
         {            
             $val = true;
         }
+        //die(var_dump($val));
         return $val;
     }
     

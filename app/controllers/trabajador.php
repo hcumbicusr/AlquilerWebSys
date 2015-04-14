@@ -29,7 +29,7 @@ function handler()
                     $objTrabajador->setTelefono(trim($_POST['telefono']));                    
                     $objTrabajador->setId_tipousuario($_POST['id_tipousuario']);  
                     $objTrabajador->setId_tipotrabajador($_POST['id_tipotrabajador']);
-                    $objTrabajador->setNro_licencia($_POST['nro_licencia']);
+                    $objTrabajador->setNro_licencia($_POST['nro_licenciaReg']);
                     
                     //die(var_dump($_POST));
                     

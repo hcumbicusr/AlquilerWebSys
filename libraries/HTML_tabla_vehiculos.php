@@ -23,12 +23,19 @@ function table ($var = NULL,$contrato = NULL)
         <td><?php echo $select[$i]['estado']; ?></td> 
         <?php if (!empty($var) && $var == 'list' && $_SESSION['tipo_usuario'] == 'ADMINISTRADOR') { ?>
         <td>
-            <a class="btn btn-adn" href="adm_edit_vehiculo.php?vh=<?php echo Funciones::encodeStrings($select[$i]['id_vehiculo'], 2); ?>"><i class="fa fa-edit fa-fw"></i>Editar</a>
+            <?php if($select[$i]['n_parte'] > 0) { ?>
+            <a class="btn btn-primary" href="adm_historial_maq.php?vh=<?php echo Funciones::encodeStrings($select[$i]['id_vehiculo'], 2); ?>">
+                <i class="fa fa-file-excel-o"></i> Historial de Alquiler
+            </a><br>
+            <?php } ?>
+             <a class="btn btn-adn" href="adm_edit_vehiculo.php?vh=<?php echo Funciones::encodeStrings($select[$i]['id_vehiculo'], 2); ?>">
+                <i class="fa fa-edit fa-fw"></i>Editar
+            </a>            
         </td>
         <?php } ?>
         <?php if (empty($var)) { ?>
         <td align="center">
-            <?php if($select[$i]['estado'] != "ACTIVO" && $select[$i]['estado'] != "DISPONIBLE") { ?>
+            <?php if(($select[$i]['estado'] != "ACTIVO" && $select[$i]['estado'] != "DISPONIBLE") || $select[$i]['tipovehiculo'] == 'SURTIDOR' ) { ?>
             <!--label style="color: #FF0000">< ?php echo $select[$i]['estado']; ?></label-->
             <a href="#" class="btn btn-primary" disabled="true" >Alquilar</a>
             <?php }else{ ?>

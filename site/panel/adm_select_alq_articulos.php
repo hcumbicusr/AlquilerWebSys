@@ -32,9 +32,9 @@
                                     <th>Nombre</th>                                    
                                     <th>Serie</th>
                                     <th>Descripci&oacute;n</th>                                    
-                                    <th>Estado</th>
                                     <th>Precio Alq.</th>
-                                    <th>Seleccionar</th>
+                                    <th>Estado</th>
+                                    <th colspan="2">Seleccionar</th>
                                 </tr>
                             </thead>
                             <tbody>

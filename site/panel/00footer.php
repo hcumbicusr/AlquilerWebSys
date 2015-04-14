@@ -40,9 +40,11 @@
     <!-- Page-Level Demo Scripts - Tables - Use for reference -->
     <script>
     $(document).ready(function() {
+                
         $('#dataTables-example').DataTable({
                 responsive: true
         });
+        
          $('#dataTable_check').DataTable({
                 responsive: true,
                 bPaginate: false,
@@ -72,7 +74,7 @@
                 success:function(result){                    
                     if (result == 0)
                     {
-                        $("#msg_comprobante_chk").text("El Nro comprobante ingresado NO existe").css("color","#FF0000");
+                        $("#msg_comprobante_chk").html("El Nro comprobante ingresado NO existe. <a href='ct_registro_comprobante.php' target='_blank'>Registrar uno nuevo</a>").css("color","#FF0000");
                         $("#btn_check_asig").attr("disabled",true);
                     }else
                     {
@@ -159,7 +161,7 @@
                     {
                         $("#mensaje_pass").css("display","block");                        
                         $("#mensaje_pass").text("No se ha podido guardar la nueva clave.");
-                        $("#btn_user_conf").attr("disabled",true);
+                        $("#btn_user_conf").attr("disabled",true);                        
                     }else if (result == 1)
                     {
                         $("#mensaje_pass").css("display","block");
@@ -168,7 +170,38 @@
                     }                    
                 }
             });
+        });                
+        
+        $("#divGuiasFech").css("display","none");
+        $("#tablaPartes").html(""); 
+        $("#btnMuestra").click(function (){
+            $("#tablaPartes").html(""); 
+            var request = $.ajax({
+                method: 'post',
+                url: '../../libraries/ajax_partes_fechas.php',
+                data:{
+                    event: 'partes',
+                    desde: $("#desde_val").val(),
+                    hasta: $("#hasta_val").val()
+                },
+                success:function(result){                    
+                    if (result != 0)
+                    {              
+                        $("#msgPartesFech").text("");
+                        $("#divGuiasFech").css("display","block");                    
+                        $("#tablaPartes").append(result);
+                        $('#tblGuiasFech').DataTable();
+                    }else
+                    {
+                        $("#msgPartesFech").css("color","#FF00FF");
+                        $("#msgPartesFech").text("No se han encontrado partes diarios en este rango de fechas");
+                        $("#divGuiasFech").css("display","none");
+                        $("#tablaPartes").html("");
+                    }                    
+                }
+            });
         });
+        
         $("#btn_control").attr("disabled",false);
         $("#trabajador").blur(function(){
             var request = $.ajax({
@@ -341,7 +374,7 @@
                     if (result == 0)
                     {                                                                        
                         $("#btnRegGuia").attr("disabled",true);     
-                        $("#nro_placaMsg").html("No se ha encontrado un SURTIDOR con esta placa.<br><a href='adm_reg_vehiculo.php#id_tipovehiculo' target='_blank'>Registrar Veh&iacute;culo SURTIDOR</a>").css("color","#FF0000");
+                        $("#nro_placaMsg").html("No se ha encontrado un SURTIDOR con esta placa.<br><a href='adm_reg_vehiculo.php' target='_blank'>Registrar Veh&iacute;culo SURTIDOR</a>").css("color","#FF0000");
                     }else if (result == 1)
                     {
                         $("#nro_placaMsg").text("OK").css("color","#0000FF");
@@ -363,11 +396,33 @@
                     if (result == 0)
                     {                                                                        
                         $("#btnRegGuia").attr("disabled",true);     
-                        $("#nro_licenciaMsg").html("No se ha encontrado un OPERARIO con esta licencia.<br><a href='adm_registro_trabajador.php#id_tipotrabajador' target='_blank'>Registrar Trabajador</a>").css("color","#FF0000");
+                        $("#nro_licenciaMsg").html("No se ha encontrado un OPERARIO con esta licencia.<br><a href='adm_registro_trabajador.php' target='_blank'>Registrar Trabajador</a>").css("color","#FF0000");
                     }else if (result == 1)
                     {
                         $("#nro_licenciaMsg").text("OK").css("color","#0000FF");
                         $("#btnRegGuia").attr("disabled",false);
+                    }                    
+                }
+            });
+        });
+        
+        $("#nro_licenciaReg").blur(function(){
+            $("#btnRegTrab").attr("disabled",false);
+            var request = $.ajax({
+                method: 'post',
+                url: '../../libraries/valida_nombre.php',
+                data:{
+                    event: 'licencia',
+                    nombre: $("#nro_licenciaReg").val()
+                },
+                success:function(result){                    
+                    if (result == 0)
+                    {                                                
+                        $("#nro_licenciaRegMsg").html("OK").css("color","#0000FF");
+                    }else if (result == 1)
+                    {
+                        $("#nro_licenciaRegMsg").html("Ya existe un OPERADOR con esta licencia.<br><a href='adm_list_trabajadores.php' target='_blank'>Ver Trabajador</a>").css("color","#FF0000");
+                        $("#btnRegTrab").attr("disabled",true);
                     }                    
                 }
             });
@@ -482,6 +537,53 @@
        $("#fecha_dev").datepicker("setDate", "+0D");
        $("#fecha_fin").datepicker("setDate", "+0D");
        $("#fecha_fin").datepicker("option",'minDate', $("#fecha_inicio_contrato").val());
+       
+       //--------------------PUPOP---------------------CLIENTES
+       $('.openClientes').click(function(){
+           var cliente = $(this).parents("tr:first").data("id");
+           
+           var request = $.ajax({
+                method: 'post',
+                url: '../../libraries/datos_cliente.php',
+                data:{
+                    cliente:  cliente
+                },
+                success:function(result){                    
+                    if (result != null)
+                    {          
+                        var data = $.parseJSON(result);
+                        console.log(data);
+                        $('#popup').fadeIn('slow');
+                        $('.popup-overlay').fadeIn('slow');
+                        $('.popup-overlay').height($(window).height());                                                
+                        
+                        var datosCli = 
+                                "<h2>"+data[0].nombre+"</h2>"+
+                                "<h4>DNI/RUC: "+data[0].codigo+"</h4>"+
+                                "<h4>DIRECCIÓN: "+data[0].direccion+"</h4>"+
+                                "<h4>REGISTRO: "+data[0].f_registro+"</h4>"+
+                                "<h4>TELÉFONO: "+data[0].telefono+"</h4>"+
+                                "<h4>TIPO: "+data[0].tipocliente+"</h4>"+
+                                "<h4 style='color: #FF0000'>Nro. CONTRATOS: "+data[0].nro_contratos+"</h4>";
+                        $("#popup .content-popup #contenidoCliente").html(datosCli);
+                        
+                    }else
+                    {
+                        $("#popup .content-popup #contenidoCliente").html("Sin datos");
+                    }                    
+                }
+            });            
+            
+            return false;
+        });
+
+        $('#close').click(function(){
+            $('#popup').fadeOut('slow');
+            $('.popup-overlay').fadeOut('slow');
+            return false;
+        });
+       
+       
     });
     </script>
     <script>        
@@ -585,6 +687,21 @@
             $("#link_valoriza").html(data);            
         });
     });
+    //_---------------- exporta historial de maq
+    $("#btnHistorial").click(function(){ 
+          var id = $("#maq").val();          
+          var desde = $("#desde_val").val();
+          var hasta = $("#hasta_val").val();
+        $.post("../../libraries/LINK_historial_maq.php",
+        {
+            id: id,
+            desde: desde,
+            hasta: hasta
+        },        
+        function(data, status){
+            $("#link_historial").html(data);            
+        });
+    });
     //-------- Exportar guias
     $("#btnExportaGuia").click(function(){           
           var desde = $("#desde_val").val();
@@ -604,6 +721,7 @@
         $("#linkValPDF").css("display","none");
         $("#linkValXLS").css("display","none");
         $("#linkValXLS_all").css("display","none");
+        $("#link_hist").css("display","none");
         $("#btnExportaGuias").css("display","none");
     });
     
@@ -611,6 +729,7 @@
         $("#linkValPDF").css("display","none");
         $("#linkValXLS").css("display","none");
         $("#linkValXLS_all").css("display","none");
+        $("#link_hist").css("display","none");
         $("#btnExportaGuias").css("display","none");
     });
     
@@ -620,6 +739,8 @@
         $("#linkValXLS").css("display","none");
         $("#linkValXLS_all").css("display","none");
         $("#btnExportaGuias").css("display","none");
+        $("#link_hist").css("display","none");
+        $("#divGuiasFech").css("display","none");        
     });
     
     $("#btnRendimiento").click(function(){ 

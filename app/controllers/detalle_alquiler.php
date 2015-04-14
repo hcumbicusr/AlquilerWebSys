@@ -20,7 +20,13 @@ function handler()
                     //$objDetalleAlquiler->setEstado($_POST['estado']);
                     $objDetalleAlquiler->setEstado($_POST['estado']);
                     //$objDetalleAlquiler->setObservacion($_POST['observacion']);
+                    if (empty($_POST['observacion']))
+                    {
+                        $_POST['observacion'] = '';
+                    }
+                    
                     $objDetalleAlquiler->setObservacion($_POST['observacion']);
+                    
                     $objDetalleAlquiler->setId_articulo(0);
                     $objDetalleAlquiler->setId_vehiculoph(Funciones::decodeStrings($_POST['v'],2));
                     
@@ -28,6 +34,9 @@ function handler()
                     $fecha = $anio."-".$mes."-".$dia;
                     
                     $objDetalleAlquiler->setFecha($fecha);
+                    
+                    $objDetalleAlquiler->setPrecio_alq($_POST['precio_alq']);
+                                       
                     //------------------------------------------------------------------------------------
                     
                     
@@ -53,8 +62,17 @@ function handler()
                     $objDetalleAlquiler = new DetalleAlquiler();
                     $objDetalleAlquiler->setId_contrato(Funciones::decodeStrings($_POST['contrato'],2));
                     //$objDetalleAlquiler->setEstado($_POST['estado']);
+                    if (empty($_POST['estado']))
+                    {
+                        $_POST['estado'] = '';
+                    }
+                    
                     $objDetalleAlquiler->setEstado($_POST['estado']);
-                    //$objDetalleAlquiler->setObservacion($_POST['observacion']);
+                    
+                     if (empty($_POST['observacion']))
+                    {
+                        $_POST['observacion'] = '';
+                    }
                     $objDetalleAlquiler->setObservacion($_POST['observacion']);
                     $objDetalleAlquiler->setId_vehiculoph(0);
                     $objDetalleAlquiler->setId_articulo(Funciones::decodeStrings($_POST['articulo'],2));
@@ -63,6 +81,8 @@ function handler()
                     $fecha = $anio."-".$mes."-".$dia;
                     
                     $objDetalleAlquiler->setFecha($fecha);
+                    
+                    $objDetalleAlquiler->setPrecio_alq($_POST['precio_alq']);
                     //------------------------------------------------------------------------------------
                     
                     
@@ -89,8 +109,19 @@ function handler()
                     
                     //die("Llegamos");
                     //session_start();
-                    $objDetalleAlquiler = new DetalleAlquiler();                                       
+                    $objDetalleAlquiler = new DetalleAlquiler();    
+                    
+                    if (empty($_POST['estado']))
+                    {
+                        $_POST['estado'] = '';
+                    }
                     $objDetalleAlquiler->setEstado($_POST['estado']);                    
+                    
+                    if (empty($_POST['observacion']))
+                    {
+                        $_POST['observacion'] = '';
+                    }
+                    
                     $objDetalleAlquiler->setObservacion($_POST['observacion']);
                     $objDetalleAlquiler->setId_detallealquiler(Funciones::decodeStrings($_POST['det_alq'], 2)); 
                     

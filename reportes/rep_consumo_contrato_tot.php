@@ -150,7 +150,7 @@ for ($w = 0; $w < count($detalle_alq); $w++) {
         $valor = 0;
         
         //--> Horometro de abastecimiento anterior a esta obra
-        $objPHPExcel->setActiveSheetIndex(0)     
+        $objPHPExcel->setActiveSheetIndex($p)     
                 ->setCellValue('G'.($i-1),  $petroleo_ant)
                 ->setCellValue('H'.($i-1),  $horom_ant);
         

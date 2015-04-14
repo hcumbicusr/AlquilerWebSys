@@ -3,17 +3,17 @@
 <script>
            
            function NumCheck(e, field) {
-            key = e.keyCode ? e.keyCode : e.which
-            if (key == 8) return true
+            key = e.keyCode ? e.keyCode : e.which;
+            if (key == 8) return true;
             if (key > 47 && key < 58) {
               if (field.value == "") return true;
-              regexp = /.[0-9]{10}$/
-              return !(regexp.test(field.value))
+              regexp = /.[0-9]{10}$/;
+              return !(regexp.test(field.value));
             }
             if (key == 46) {
               if (field.value == "") return false;
-              regexp = /^[0-9]+$/
-              return regexp.test(field.value)
+              regexp = /^[0-9]+$/;
+              return regexp.test(field.value);
             }
             return false;
           }
@@ -38,8 +38,19 @@
 
 <div id="page-wrapper">
     <div class="row">
+        <?php if ($_SESSION['tipo_usuario'] != $config['typeUserAdmin']) { ?>
+        <label style="font-size: 25px; color: #FF0000; margin-left: 50px">
+            Esta operaci&oacute;n debe ser realizada por el administrador del sistema !!
+        </label>
+        <script>           
+            setInterval(function(){ window.location.href = "./"; window.close(); },3000);            
+        </script>
+        <?php } ?>
+    </div>
+    
+    <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">Asignaci&oacute;n de Operario</h1>
+            <h1 class="page-header">Asignaci&oacute;n de Operador</h1>
         </div>
         <!-- /.col-lg-12 -->
     </div>
@@ -56,7 +67,7 @@
                     include '../../app/controllers/trab_vehiculo.php';
                     $res = datosVechiculoAsigna(Funciones::decodeStrings($_GET['detal'],2));
                     
-                    echo "Veh&iacute;culo/Maquinaria: <b>(".$res[0]['tipovehiculo'].") ".$res[0]['vehiculo']." / ".$res[0]['marca']." / MOD: ".$res[0]['modelo']." / SERIE: ".$res[0]['serie']." / PLACA: ".$res[0]['placa']."</b>"; 
+                    echo "Maquinaria: <b>(".$res[0]['tipovehiculo'].") ".$res[0]['vehiculo']." / ".$res[0]['marca']." / MOD: ".$res[0]['modelo']." / SERIE: ".$res[0]['serie']." / PLACA: ".$res[0]['placa']."</b>"; 
                     ?>
                 </div>
                 
@@ -99,7 +110,7 @@
                             ?>
                             <div class="alert alert-danger">
                                 <p>
-                                    Esta unidad ya ha sido asignada a otro operario, 
+                                    Esta unidad ya ha sido asignada a otro Operador, 
                                     si a&uacute;n desea realizar la asignaci&oacute;n, 
                                     se desactivar&aacute; la asignaci&oacute;n anterior.<br>
                                     <b>Operario: [ <?php echo $result[0]['operario']; ?> ] </b>
@@ -118,7 +129,7 @@
                                     <p class="help-block">Fecha de asignaci&oacute;n.</p>
                                 </div>
                                 <div class="form-group">
-                                    <label>Seleccionar Operario: <label style="color: #FF0000">(*)</label> </label>
+                                    <label>Seleccionar Operador: <label style="color: #FF0000">(*)</label> </label>
                                     <?php 
                                     $name = 'id_trabajador';
                                     $table = 'operario';
@@ -126,7 +137,7 @@
                                     require_once '../../libraries/HTML_armar_select.php';    
                                     select($name, $table, $class);
                                     ?>        
-                                    <p class="help-block">Operario</p>
+                                    <p class="help-block">Operador</p>
                                 </div>                                                            
                                <div> <label style="color: #FF0000">(*) Datos obligatorios</label></div>
                                 <button type="submit" class="btn btn-default">Guardar</button>                                

@@ -121,9 +121,9 @@
                                 </div>
                                 
                                 <div class="form-group">
-                                    <label>Operario: <label style="color: #FF0000">(*)</label>  </label>                                    
-                                    <input name="trabajador" id="trabajador" value="<?php echo $result[0]['operario']; ?>"  placeholder="Operario" class="form-control"  maxlength="200" autofocus required >                                    
-                                    <p id="msg_operario" class="help-block">Operario.</p>
+                                    <label>Operador: <label style="color: #FF0000">(*)</label>  </label>                                    
+                                    <input name="trabajador" id="trabajador" value="<?php echo $result[0]['operario']; ?>"  placeholder="Operador" class="form-control"  maxlength="200" autofocus required >                                    
+                                    <p id="msg_operario" class="help-block">Operador.</p>
                                 </div>
                                                                 
                                 <div class="form-group">

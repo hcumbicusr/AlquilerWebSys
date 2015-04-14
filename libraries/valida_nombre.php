@@ -23,20 +23,22 @@ switch ($event) {
         break; 
     
     case 'guia':
-        $guia = $_POST['nombre'];        
+        $guia = str_replace(' ','',$_POST['nombre']);        
         $query = "SELECT count(*) as n FROM detalleabastecimiento WHERE nro_guia = '$guia'";
         $result = $objDB->selectManager()->select($con, $query);
         echo intval($result[0]['n']);
         break;
     case 'guia2':
-        $guia = $_POST['nombre'];   
-        if (empty(trim($guia)))
+        $guia = str_replace(' ','',$_POST['nombre']);        
+        if (empty($guia) || $guia == '' || $guia == ' ')
         {
             $guia = 'X';
         }
         $query = "SELECT count(*) as n FROM detalleabastecimiento WHERE nro_guia = '$guia'";
+        //echo $query; die();
         $result = $objDB->selectManager()->select($con, $query);
-        if (empty(trim($_POST['nombre'])))
+        
+        if ($guia == 'X')
         {
             echo 2;
         }else
@@ -45,14 +47,14 @@ switch ($event) {
         }        
         break;
     case 'placa':
-        $placa = $_POST['nombre'];        
+        $placa = str_replace(' ','',$_POST['nombre']);        
         $query = "SELECT count(*) as n FROM vehiculo WHERE id_tipovehiculo = 5 AND placa = '$placa'";        
         $result = $objDB->selectManager()->select($con, $query);
         echo intval($result[0]['n']);
         break;
     case 'licencia':
-        $licencia = $_POST['nombre'];  
-        if (empty(trim($licencia)))
+        $licencia = str_replace(' ','',$_POST['nombre']);        
+        if (empty($licencia) || $licencia == '' || $licencia == ' ')
         {
             $licencia = 'X';
         }
@@ -61,14 +63,14 @@ switch ($event) {
         echo intval($result[0]['n']);
         break;
   case 'comprobante':
-        $comprob = $_POST['nombre'];  
-        if (empty(trim($comprob)))
+        $comprob = str_replace(' ','',$_POST['nombre']);        
+        if (empty($comprob) || $comprob == '' || $comprob == ' ')
         {
             $comprob = 'X';
         }
         $query = "SELECT count(*) as n FROM abastecimiento WHERE nro_comprobante = '$comprob'";
         $result = $objDB->selectManager()->select($con, $query);
-        if (empty(trim($_POST['nombre'])))
+        if ($comprob == 'X')
         {
             echo 2;
         }else
@@ -77,19 +79,19 @@ switch ($event) {
         } 
         break;
     case 'parte': //valida si exite el parte diario
-        $parte = $_POST['nombre'];        
+        $parte = str_replace(' ','',$_POST['nombre']);        
         $query = "SELECT count(*) as n FROM controltrabajo WHERE nro_parte = '$parte'";        
         $result = $objDB->selectManager()->select($con, $query);
         echo intval($result[0]['n']);
         break;
     case 'vale': //valida si exite el vale de consumo del vehiculo
-        $vale = $_POST['nombre'];        
+        $vale = str_replace(' ','',$_POST['nombre']);        
         $query = "SELECT count(*) as n FROM consumo WHERE nro_vale = '$vale'";        
         $result = $objDB->selectManager()->select($con, $query);
         echo intval($result[0]['n']);
         break;
-    case 'trabajador': //valida si exite el vale de consumo del vehiculo
-        $dni = $_POST['nombre'];        
+    case 'trabajador': //valida si exite el trabajador DNI
+        $dni = str_replace(' ','',$_POST['nombre']);        
         $query = "SELECT count(*) as n FROM trabajador WHERE dni = '$dni'";        
         $result = $objDB->selectManager()->select($con, $query);
         echo intval($result[0]['n']);

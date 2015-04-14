@@ -60,6 +60,17 @@
 
 <div id="page-wrapper">
     <div class="row">
+        <?php if ($_SESSION['tipo_usuario'] != $config['typeUserAdmin']) { ?>
+        <label style="font-size: 25px; color: #FF0000; margin-left: 50px">
+            Esta operaci&oacute;n debe ser realizada por el administrador del sistema !!
+        </label>
+        <script>           
+            setInterval(function(){ window.location.href = "./"; window.close(); },3000);            
+        </script>
+        <?php } ?>
+    </div>
+    
+    <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header">Registro de nuevo trabajador</h1>
         </div>
@@ -140,9 +151,9 @@
                                     <p class="help-block">Tel&eacute;fono.</p>
                                 </div>    
                                 <div class="form-group">
-                                    <label>Nro. Licencia de conducir: <label style="color: #FF0000"> (Importante para operarios)</label> </label>
-                                    <input id="nro_licencia" name="nro_licencia" class="form-control" maxlength="20"  placeholder="Nro Licencia">
-                                    <p class="help-block">Nro. Licencia.</p>
+                                    <label>Nro. Licencia de conducir: <label style="color: #FF0000"> (Importante para TIPO DE TRABAJADOR: <b>OPERADOR</b>)</label> </label>
+                                    <input id="nro_licenciaReg" name="nro_licenciaReg" class="form-control" maxlength="20"  placeholder="Nro Licencia">
+                                    <p id="nro_licenciaRegMsg" class="help-block">Nro. Licencia.</p>
                                 </div> 
                                 <div class="form-group">
                                     <label>Tipo de USUARIO <b style="color: #FF0000">(Para acceso al sistema)</b>: <label style="color: #FF0000">(*)</label> </label>
