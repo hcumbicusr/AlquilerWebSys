@@ -39,15 +39,18 @@ $config['hostnameDataBase']="localhost";
 /**
  * @var name database
  */
-$config['nameDataBase']="diverc0l_alquiler";
+// $config['nameDataBase']="diverc0l_alquiler";
+$config['nameDataBase']="bd_alquiler";
 /**
  * @var user
  */
-$config['userDataBase']="diverc0l_admin";
+// $config['userDataBase']="diverc0l_admin";
+$config['userDataBase']="alquilerpiuramaq";
 /**
  * @var password
  */
-$config['passwordDataBase']="@hcumbicusr123";
+// $config['passwordDataBase']="@hcumbicusr123";
+$config['passwordDataBase']="Alquiler2015";
 /**
  * @var management
  */

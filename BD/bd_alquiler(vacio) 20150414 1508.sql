@@ -18,8 +18,8 @@
 -- Create schema bd_alquiler
 --
 
-CREATE DATABASE IF NOT EXISTS bd_alquiler;
-USE bd_alquiler;
+-- CREATE DATABASE IF NOT EXISTS bd_alquiler;
+-- USE bd_alquiler;
 
 --
 -- Definition of table `abastecimiento`

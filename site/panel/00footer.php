@@ -605,6 +605,7 @@
           $.ajax({
             method:'get',
             url:'../../libraries/ajax_notificacion.php',
+            cache: false,
             success:function(data){
               $("#notifica").html(data);
             }
