@@ -91,6 +91,7 @@
                                                     <th>N</th>         
                                                     <th>Fecha</th>
                                                     <th>Nro.</th>
+                                                    <th>Vale Comb.</th>
                                                     <th>Cant.</th>
                                                     <th>Stock</th>
                                                     <th>Tipo Comb.</th>                                          

@@ -14,6 +14,7 @@ function table ()
         <td><?php echo $i+1; ?></td>                
         <td><?php echo $select[$i]['fecha']; ?></td>
         <td><?php echo $select[$i]['nro_guia']; ?></td>        
+        <td><?php echo $select[$i]['vale_combustible']; ?></td>
         <td><?php echo $select[$i]['cantidad']." GLN"; ?></td>
         <td><?php echo $select[$i]['stock']." GLN"; ?></td>
         <td><?php echo $select[$i]['tipocombustible']; ?></td>        
