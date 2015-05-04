@@ -104,7 +104,7 @@
                                 
                                 <div class="form-group">
                                     <label>Nro de comprobante: <label style="color: #FF0000">(*)</label> </label>
-                                    <input id="nro_comprobanteReg" name="nro_comprobanteReg" class="form-control" placeholder="000000" maxlength="20" required autofocus >
+                                    <input id="nro_comprobanteReg" name="nro_comprobanteReg" value="001-" class="form-control" placeholder="000000" maxlength="20" required >
                                     <p id="nro_comprobanteRegMsg" class="help-block">N&uacute;mero de comprobante.</p>
                                 </div>
                                 <div class="form-group">
@@ -120,7 +120,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Nro de Operaci&oacute;n/Cheque: <label style="color: #FF0000">(*)</label> </label>
-                                    <input id="nro_operacion" name="nro_operacion" class="form-control" placeholder="000000" maxlength="20" required autofocus >
+                                    <input id="nro_operacion" name="nro_operacion" class="form-control" placeholder="000000" maxlength="20" required  >
                                     <p class="help-block">Nro de Operaci&oacute;n/Cheque.</p>
                                 </div>                                 
                                 <div class="form-group">
@@ -140,7 +140,7 @@
                                     <p class="help-block">Tipo de combustible.</p>
                                 </div>
                                 <div class="form-group">
-                                    <label>Precio Unitario: S/. <label style="color: #FF0000">(*)</label> </label>
+                                    <label>Precio Unitario (Con I.G.V.): S/. <label style="color: #FF0000">(*)</label> </label>
                                     <input id="precio_u" name="precio_u" class="form-control" placeholder="S/. 000000.00" required onkeypress="return NumCheck(event,this);" maxlength="13">
                                     <p class="help-block">Precio Unitario.</p>
                                 </div>

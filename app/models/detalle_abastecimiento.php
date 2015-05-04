@@ -13,11 +13,28 @@ Class DetalleAbastecimiento {
     protected $nro_placa;
     protected $nro_liciencia;
     protected $abastecedor;
+    protected $vale_combustible;
     
     protected $f_desde;
     protected $f_hasta;
     protected $nro_comprobante;
+    protected $ingreso;
 
+    public function getIngreso() {
+        return $this->ingreso;
+    }
+
+    public function setIngreso($ingreso) {
+        $this->ingreso = $ingreso;
+    }
+
+    public function getVale_combustible() {
+        return $this->vale_combustible;
+    }
+
+    public function setVale_combustible($vale_combustible) {
+        $this->vale_combustible = $vale_combustible;
+    }
 
     public function getId_detalleabastecimiento() {
         return $this->id_detalleabastecimiento;
@@ -158,7 +175,9 @@ Class DetalleAbastecimiento {
                 ."'".$this->getFecha()."',"
                 ."'".$this->getNro_guia()."',"
                 ."".$this->getCantidad().","
-                ."'".$this->getAbastecedor()."'";
+                ."'".$this->getAbastecedor()."',"
+                ."'".$this->getVale_combustible()."',"
+                ."'".$this->getIngreso()."'";
         
         //die(var_dump($input));
                 
@@ -251,7 +270,10 @@ Class DetalleAbastecimiento {
                 ."'".$this->getFecha()."',"
                 ."'".$this->getNro_guia()."',"
                 ."".$this->getCantidad().","
-                ."'".$this->getAbastecedor()."'";
+                ."'".$this->getAbastecedor()."',"
+                ."'".$this->getNro_liciencia()."',"
+                ."'".$this->getNro_placa()."',"
+                ."'".$this->getVale_combustible()."'";
         
         //die(var_dump($input));
                 

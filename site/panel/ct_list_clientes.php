@@ -22,7 +22,6 @@
                                     <th>DNI/RUC</th>
                                     <th>Nombre</th>
                                     <th>Obra</th>
-                                    <th>Tipo</th>
                                     <th>F. Inicio</th>
                                     <th>F. Fin</th>                                                                       
                                     <th>Opci&oacute;n</th>                                    

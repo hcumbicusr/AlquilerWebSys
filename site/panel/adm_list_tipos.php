@@ -24,8 +24,7 @@
                                     <option value="CLIENTE">CLIENTE</option>
                                     <option value="COMBUSTIBLE">COMBUSTIBLE</option>
                                     <option value="COMPROBANTE">COMPROBANTE</option>
-                                    <option value="MARCA">MARCA</option>
-                                    <option value="OBRA">OBRA</option>
+                                    <option value="MARCA">MARCA</option>                                    
                                     <option value="TRABAJADOR">TRABAJADOR</option>
                                     <option value="USUARIO">USUARIO</option>
                                     <option value="VEHICULO">VEH&Iacute;CULO</option>

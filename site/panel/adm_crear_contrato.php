@@ -41,7 +41,13 @@
                 formulario.f_fin.focus();   
                 alert('Escriba la fecha completa con formato: dd/mm/yyyy'); 
                 return false; //devolvemos el foco
-            } 
+            }
+            if(formulario.hora_min.value.trim().length < 1)
+            {
+                formulario.hora_min.focus();
+                alert('Ingrese las horas mínimas'); 
+                return false; //devolvemos el foco
+            }
             
             
             return true;
@@ -120,33 +126,21 @@
                                     <input type="hidden" name="id_cliente" id="id_cliente" value="<?php echo $_GET['cliente']; ?>" >
                                 </div>
                                 <div class="form-group">
-                                    <label>Obra: <label style="color: #FF0000">(*)</label> </label>
-                                    <?php 
-                                    $name = 'id_obra';
-                                    $table = 'obra';
-                                    $class = 'form-control';
-                                    require_once '../../libraries/HTML_armar_select.php';    
-                                    select($name, $table, $class);
-                                    ?>
-                                    <p class="help-block">
-                                        Elegir la obra.<sup><a href="adm_reg_obra.php" target="_blank">Si no ha registrado la obra, haga click AQU&Iacute;</a></sup>
-                                    </p>
+                                    <label>Obra: <label style="color: #FF0000">(*)</label> </label>                                    
+                                    <textarea name="obra" id="obra" class="form-control" rows="5" placeholder="Nombre de la obra" >Obra para sector privado.</textarea>                                
+                                    <p class="help-block">Nombre de obra.</p>
                                 </div>
                                 <div class="form-group">
                                     <label>Fecha de inicio: <label style="color: #FF0000">(*)</label> </label>
-                                    <input type="text" id="f_inicio" name="f_inicio" class="form-control fechas_v" placeholder="dd/mm/yyyy" maxlength="10" required autofocus>
+                                    <input type="text" id="f_inicio" name="f_inicio" class="form-control fechas_v" placeholder="dd/mm/yyyy" maxlength="10" required>
                                     <p class="help-block">Fecha de inicio.</p>
-                                </div>
-                                <!--div class="form-group">
-                                    <label>Fecha de finalizaci&oacute;n: <label style="color: #FF0000">(*)</label> </label>
-                                    <input type="text" id="f_fin" name="f_fin" class="form-control fechas_v" placeholder="dd/mm/yyyy" maxlength="10" required>
-                                    <p class="help-block">Fecha de finalizaci&oacute;n.</p>
-                                </div -->
-                                <!--div class="form-group">
-                                    <label>Presupuesto: <label style="color: #FF0000">(*)</label> </label>
-                                    <input id="presupuesto" name="presupuesto" class="form-control" placeholder="000000.00" required onkeypress="return NumCheck(event,this);" maxlength="15" >
-                                    <p class="help-block">Presupuesto.</p>
-                                </div-->
+                                </div>                 
+                                <div class="form-group">
+                                    <label>Horas m&iacute;nimas: <label style="color: #FF0000">(*)</label> </label>
+                                    <input id="hora_min" name="hora_min" value="0" class="form-control" placeholder="0" 
+                                           required onkeypress="return NumCheck(event,this);" maxlength="5" >
+                                    <p class="help-block">Horas m&iacute;nimas.</p>
+                                </div> 
                                 <div class="form-group">
                                     <label>Descripci&oacute;n:</label>
                                     <textarea name="detalle" id="detalle" class="form-control" rows="5" placeholder="Descripci&oacute;n" ></textarea>

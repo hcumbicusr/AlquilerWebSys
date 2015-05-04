@@ -3,12 +3,20 @@
 <div id="page-wrapper">
     <div class="row">
         <div class="col-lg-12">
+            <?php if($_GET['rep'] == 'guia') { ?>
             <h1 class="page-header">Exportar gu&iacute;as entre fechas</h1>
+            <?php } else if($_GET['rep'] == 'vale') { ?>
+            <h1 class="page-header">Exportar vales entre fechas</h1>
+            <?php } ?>
         </div>
         <!-- /.col-lg-12 -->
     </div>
+    <?php if($_GET['rep'] == 'guia') { ?>
     <a href="ct_list_guias.php">
-        <img src="../img/atras.png" title="Clientes"><label>Atr&aacute;s</label>
+    <?php } else if($_GET['rep'] == 'vale') { ?>
+    <a href="ct_list_vale_comb.php">
+    <?php } ?>
+        <img src="../img/atras.png" title=""><label>Atr&aacute;s</label>
     </a>
     <!-- /.row -->
     <div class="row">

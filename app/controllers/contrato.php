@@ -16,7 +16,7 @@ function handler()
                     session_start();
                     $objContrato = new Contrato();
                     $objContrato->setId_cliente(Funciones::decodeStrings($_POST['id_cliente'],2));
-                    $objContrato->setId_obra($_POST['id_obra']);
+                    $objContrato->setObra(trim($_POST['obra']));
                     
                     list($dia,$mes,$anio) = explode("/", $_POST['f_inicio']);
                     $desde = $anio."-".$mes."-".$dia;
@@ -40,6 +40,8 @@ function handler()
                     {
                         $objContrato->setPresupuesto($_POST['presupuesto']);
                     }
+                    
+                    $objContrato->setHora_min($_POST['hora_min']);
                                         
                     $objContrato->setDetalle(trim($_POST['detalle']));
                     

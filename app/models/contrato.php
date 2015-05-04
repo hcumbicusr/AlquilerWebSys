@@ -3,7 +3,7 @@
 Class Contrato {
     
     private $id_contrato;
-    private $id_obra;
+    private $obra;
     private $id_cliente;
     private $f_inicio;
     private $f_fin;
@@ -21,15 +21,29 @@ Class Contrato {
     private $nombre;
     private $direccion;
     private $telefono;    
+    private $hora_min;
+
+
+    public function getHora_min() {
+        return $this->hora_min;
+    }
+
+    public function setHora_min($hora_min) {
+        $this->hora_min = $hora_min;
+    }
     
+    public function getObra() {
+        return $this->obra;
+    }
+
+    public function setObra($obra) {
+        $this->obra = $obra;
+    }
+
     public function getId_contrato() {
         return $this->id_contrato;
     }
-
-    public function getId_obra() {
-        return $this->id_obra;
-    }
-
+    
     public function getId_cliente() {
         return $this->id_cliente;
     }
@@ -84,10 +98,6 @@ Class Contrato {
 
     public function setId_contrato($id_contrato) {
         $this->id_contrato = $id_contrato;
-    }
-
-    public function setId_obra($id_obra) {
-        $this->id_obra = $id_obra;
     }
 
     public function setId_cliente($id_cliente) {
@@ -157,12 +167,13 @@ Class Contrato {
                 ."'".$browser[0]."',"
                 ."'".$browser[2]."',"
                 ."'".$browser[1]."',"                                
-                ."".$this->getId_obra().","
+                ."'".$this->getObra()."',"
                 ."".$this->getId_cliente().","
                 ."'".$this->getF_inicio()."',"
                 ."'".$this->getF_fin()."',"
                 ."".$this->getPresupuesto().","
-                ."'".$this->getDetalle()."'";
+                ."'".$this->getDetalle()."',"
+                ."".$this->getHora_min()."";
         
         //die(var_dump($input));
         

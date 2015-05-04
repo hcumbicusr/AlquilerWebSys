@@ -36,22 +36,26 @@ $obra = $misDatos[0]['obra'];
 $vehiculo = $misDatos[0]['vehiculo'];
 
 for ($i = 0; $i < count($misDatos); $i++)
-{
-    $operario[$i] = $misDatos[$i]['operario'];
+{    
+    $operario[$i] = $misDatos[$i]['operario'];    
+        
     list($anio,$mes,$dia) = explode('-', $misDatos[$i]['fecha']);
     $misDatos[$i]['fecha'] = $dia.'/'.$mes.'/'.$anio;
 }
 
-//die(var_dump($misDatos));
+$cantidad = count($operario);
 $operario = array_unique($operario);
-//die(var_dump($operario));
-
+//var_dump($operario);
+//echo count($operario);
 if (count($operario) > 1)
 {
     $aux = "";
-    for ($i = 1; $i < count($operario); $i++)
+    for ($i = 0; $i < $cantidad; $i++)
     {
-        $aux .= $operario[$i]." - ";        
+        if(!empty($operario[$i]))
+        {
+            $aux .= $operario[$i]." - ";
+        }        
     }
     $operario = substr($aux, 0, -3);
 }else
@@ -320,7 +324,7 @@ if(count($misDatos) > 0 ){
          $objPHPExcel->setActiveSheetIndex(0)->getColumnDimension('M')->setWidth(10.71); 
          $objPHPExcel->setActiveSheetIndex(0)->getColumnDimension('N')->setWidth(30.57); 
                 
-
+         
         // Se asigna el nombre a la hoja
         $objPHPExcel->getActiveSheet()->setTitle($vehiculo);
 

@@ -145,7 +145,7 @@ function validarForm(formulario) {
                             <div class="form-group">
                                 <label>Precio de alquiler: <label style="color: #FF0000">(*)</label> </label>
                                 <input id="precio_alq" name="precio_alq" value="<?php echo $precio_alq; ?>" class="form-control" placeholder="000000.00" 
-                                       required value="0" onkeypress="return NumCheck(event,this);" maxlength="15" >
+                                       required onkeypress="return NumCheck(event,this);" maxlength="15" >
                                 <p class="help-block">Precio de alquiler.</p>
                             </div> 
                             <div> <label style="color: #FF0000">(*) Datos obligatorios</label></div>

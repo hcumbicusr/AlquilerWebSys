@@ -15,7 +15,7 @@ class Class_Mysqli implements interfaceDb{
         return $con;    
     }
     
-    public function select($con,$query){          
+    public function select($con,$query){           
         $consult = $con->query($query);  
         $data = NULL;
         if ($consult != NULL)

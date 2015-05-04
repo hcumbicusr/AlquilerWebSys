@@ -15,6 +15,10 @@ function handler()
                 {
                     session_start();                    
                     $objControl = new ControlTrabajo();
+                    
+                    //echo "<pre>";
+                    //die(var_dump($_POST));
+                    
                     $objControl->setId_vehiculo(Funciones::decodeStrings($_POST['id_detallealquiler'],2));  
                     
                     list($apel,$nom) = explode(",", $_POST['trabajador']);
@@ -46,7 +50,7 @@ function handler()
                     $dcto =$_POST['descuento'];
                     
                     $objControl->setHorometro_inicio($_POST['horometro_ini']);
-                    $objControl->setHorometro_fin($_POST['horometro_fin']);
+                    $objControl->setHorometro_fin($_POST['horometro_fin']);                                        
                     
                     if (empty($dcto)) $dcto = 0;
                     
@@ -66,6 +70,17 @@ function handler()
                     $objControl->setHrs($hrs);
                     $objControl->setMin($min);
                     ////------------------------------------Calculo de horas y minutos -----------------------
+                    
+                    if($_POST['valorizacion'] == 'HR')
+                    {
+                        $h_min = 0;
+                    }else if ($_POST['valorizacion'] == 'HM')
+                    {
+                        $h_min = $_POST['hora_min_reg'];
+                    }
+                    
+                    $objControl->setValorizacion($_POST['valorizacion']);
+                    $objControl->setHora_min($h_min);
                     
                     if ($objControl->registrarParte())
                     {
@@ -134,6 +149,18 @@ function handler()
                     $objControl->setHrs($hrs);
                     $objControl->setMin($min);
                     ////------------------------------------Calculo de horas y minutos -----------------------
+                    
+                    if($_POST['valorizacion'] == 'HR')
+                    {
+                        $h_min = 0;
+                    }else if ($_POST['valorizacion'] == 'HM')
+                    {
+                        $h_min = $_POST['hora_min_reg'];
+                    }
+                    
+                    $objControl->setValorizacion($_POST['valorizacion']);
+                    $objControl->setHora_min($h_min);
+                    
                     
                     if ($objControl->editarParte())
                     {

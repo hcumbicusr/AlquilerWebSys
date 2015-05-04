@@ -6,8 +6,8 @@
 */
 header('Content-Type: text/html; charset=UTF-8');
 //error_reporting(E_ERROR);
-ini_set("display_errors", true);
-error_reporting(E_ALL);
+ini_set("display_errors", false);
+error_reporting(0);
 //seteo la fecha segun la region
 date_default_timezone_set('America/Lima');
 
@@ -39,14 +39,17 @@ $config['hostnameDataBase']="localhost";
 /**
  * @var name database
  */
+// $config['nameDataBase']="diverc0l_alquiler";
 $config['nameDataBase']="bd_alquiler";
 /**
  * @var user
  */
+// $config['userDataBase']="diverc0l_admin";
 $config['userDataBase']="root";
 /**
  * @var password
  */
+// $config['passwordDataBase']="@hcumbicusr123";
 $config['passwordDataBase']="";
 /**
  * @var management
@@ -74,7 +77,7 @@ $config['sessionTime']= 2400;
 /**
  * @var entorno : 1-> Desarrollo; 2-> Produccion
  */
-$config['entorno']= 1;
+$config['entorno']= 2;
 /**
  * @var IGV
  */
@@ -84,6 +87,7 @@ $config['igv']= 18; // 18%
  * @var DETRACCION
  */
 $config['detraccion']= 10; // 10%
+
 
 /**
  * @var DETRACCION FLETE

@@ -96,4 +96,42 @@ switch ($event) {
         $result = $objDB->selectManager()->select($con, $query);
         echo intval($result[0]['n']);
         break;
+    
+    case 'vale_comb': //valida si exite el vale_combustible
+        $vale = str_replace(' ','',$_POST['vale_comb']);        
+        if (empty($vale) || $vale == '' || $vale == ' ')
+        {
+            $vale = 'X';
+        }
+        $query = "SELECT count(*) as n FROM detalleabastecimiento WHERE vale_combustible = '$vale'";
+        //echo $query; die();
+        $result = $objDB->selectManager()->select($con, $query);
+        
+        if ($vale == 'X')
+        {
+            echo 2;
+        }else
+        {
+            echo intval($result[0]['n']);
+        }
+        break;
+        
+   case 'placa_v': //valida placa vehiculo
+        $placa = str_replace(' ','',$_POST['nombre']);        
+        if (empty($placa) || $placa == '' || $placa == ' ')
+        {
+            $placa = 'X';
+        }
+        $query = "SELECT count(*) as n FROM vehiculo WHERE placa = '$placa'";
+        //echo $query; die();
+        $result = $objDB->selectManager()->select($con, $query);
+        
+        if ($placa == 'X')
+        {
+            echo 2;
+        }else
+        {
+            echo intval($result[0]['n']);
+        }
+        break;
 }

@@ -60,6 +60,9 @@ $p = 0;
 for ($w = 0; $w < count($detalle_alq); $w++) {                  
          
     $con = $objDB->selectManager()->connect();
+    
+    //echo "call sp_REP_consumo_detal(".$detalle_alq[$w]['id_detallealquiler'].");<br>";
+    
     $misDatos = $objDB->selectManager()->spSelect($con, "sp_REP_consumo_detal", $detalle_alq[$w]['id_detallealquiler']); //DATOS DE LA TABLA       
         
     //-----Horometro anterior
@@ -69,45 +72,54 @@ for ($w = 0; $w < count($detalle_alq); $w++) {
     $horom_ant = $horom[0]['horom_ant']; // horometro anterior a este reporte
     $petroleo_ant = $horom[0]['petroleo']; // petroleo anterior
     //--------------------------------fin horom
-
+    //$operario[] = "";
+        
     if(count($misDatos) > 0 ){    
     if (PHP_SAPI == 'cli')
     {
         die('Este archivo solo se puede ver desde un navegador web');
     }
-        $operario = "";
+        
         $cliente = $misDatos[0]['cliente'];
         $obra = $misDatos[0]['obra'];
         $vehiculo = $misDatos[0]['vehiculo'];
         //die(var_dump($misDatos));
         for ($i = 0; $i < count($misDatos); $i++)
         {
-            //$operario[$i] = $misDatos[$i]['operario'];
+            $operario[$i] = $misDatos[$i]['operario'];    
+            
             list($anio,$mes,$dia) = explode('-', $misDatos[$i]['fecha']);
             $misDatos[$i]['fecha'] = $dia.'/'.$mes.'/'.$anio;
         }
-        //$operario = array_unique($operario);
+        
         //die(var_dump($operario));
         $arr = array('[',']'); 
         $vehiculo = substr(str_replace($arr, '', $vehiculo), 0,25);          
+                
+        $cantidad = count($operario);
         
-        
+        $operario = array_unique($operario);
+        //die(var_dump($operario));
+        //echo count($operario);
         if (count($operario) > 1)
         {
             $aux = "";
-            for ($i = 1; $i < count($operario); $i++)
+            for ($i = 0; $i < $cantidad; $i++)
             {
-                $aux .= $operario[$i]." - ";        
+                if(!empty($operario[$i]))
+                {
+                    $aux .= $operario[$i]." - ";
+                }        
             }
             $operario = substr($aux, 0, -3);
         }else
         {
             $operario = $misDatos[0]['operario'];
-        }                                       
+        }                                      
         
         $tituloReporte = "COMBUSTIBLE CONSUMIDO POR: ".$vehiculo;
-        $tituloReporteOp = "OPERADOR: ".$operario;        
-        
+        $tituloReporteOp = "OPERADOR: ".$operario;
+        //echo $tituloReporteOp."<br>";
         //------------------cliente - obra
         $objPHPExcel->setActiveSheetIndex($p)
                     ->mergeCells('E1:N1'); 
@@ -339,7 +351,8 @@ if ($cont == count($detalle_alq))
     echo "Sin datos para mostrar";
 }
 else
-{
+{    
+    //die();
     //elimina la ultima apgina en blanco
         $objPHPExcel->removeSheetByIndex($p);
         // Se activa la hoja para que sea la que se muestre cuando el archivo se abre

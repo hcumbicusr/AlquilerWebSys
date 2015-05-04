@@ -27,6 +27,8 @@ function handler()
                    
                    $objDetAbast->setId_tipocombustible($_POST['id_tipocombustible']);  
                    $objDetAbast->setAbastecedor(trim($_POST['abastecedor']));
+                   $objDetAbast->setVale_combustible(trim($_POST['vale_combustible']));
+                   $objDetAbast->setIngreso("MQ"); //MAquinaria
                    
                     if ($objDetAbast->registrarDetalleAbastecimiento())
                     {
@@ -172,8 +174,20 @@ function handler()
                     $objDetAbast = new DetalleAbastecimiento(); 
                     $objDetAbast->setId_detalleabastecimiento(Funciones::decodeStrings($_POST['id_det_abast'], 2));
                    $objDetAbast->setNro_guia(trim($_POST['nro_guia']));
-//                   $objDetAbast->setNro_placa(trim($_POST['nro_placa']));
-//                   $objDetAbast->setNro_liciencia(trim($_POST['nro_licencia']));
+                   
+                   if (empty($_POST['nro_placa']))
+                   {
+                       $guia = false;
+                       $placa = $_POST['nro_placa_v'];
+                   }elseif(empty($_POST['nro_placa_v']))
+                   {
+                       $guia = true;
+                       $placa = $_POST['nro_placa'];
+                   }
+                   
+                   $objDetAbast->setNro_placa(trim($placa));
+                   
+                   $objDetAbast->setNro_liciencia(trim($_POST['nro_licencia']));
                    $objDetAbast->setCantidad($_POST['cant_comb']);
                    
                    list($dia,$mes,$anio) = explode("/", $_POST['fecha']);
@@ -182,14 +196,32 @@ function handler()
                    $objDetAbast->setId_tipocombustible($_POST['id_tipocombustible']);  
                    $objDetAbast->setAbastecedor(trim($_POST['abastecedor']));
                    
+                   if (is_numeric($_POST['vale_combustible']))
+                   {
+                       $objDetAbast->setVale_combustible(trim($_POST['vale_combustible']));
+                   }else
+                   {
+                       $objDetAbast->setVale_combustible(0);
+                   }                                      
+                   
                     if ($objDetAbast->editarDetalleAbastecimiento())
                     {
                         //die(" SI ".  var_dump($ret));
-                        header("Location: ../../site/panel/ct_list_guias.php");
+                        if($guia){
+                            header("Location: ../../site/panel/ct_list_guias.php");
+                        }else
+                        {
+                            header("Location: ../../site/panel/ct_list_vale_comb.php");
+                        }
                     }else
                     {
                         //die("NO");
-                        header("Location: ../../site/panel/ct_list_guias.php#NO");
+                        if($guia){                        
+                            header("Location: ../../site/panel/ct_list_guias.php#NO");
+                        }else
+                        {
+                            header("Location: ../../site/panel/ct_list_vale_comb.php#NO");
+                        }
                     }
                     //die(var_dump($_POST));
                 }else
@@ -198,6 +230,41 @@ function handler()
                 }                
                 break;
             
+           case 'registrar_vale_comb': 
+                if (!empty($_POST))
+                {
+                    session_start();
+                    $objDetAbast = new DetalleAbastecimiento();                                                        
+                   $objDetAbast->setNro_guia("000000");
+                   $objDetAbast->setNro_placa(trim($_POST['nro_placa_v']));
+                   $objDetAbast->setNro_liciencia(trim($_POST['nro_licencia']));
+                   $objDetAbast->setCantidad($_POST['cant_comb']);
+                   
+                   list($dia,$mes,$anio) = explode("/", $_POST['fecha']);
+                    $fecha = $anio."-".$mes."-".$dia;
+                   
+                   $objDetAbast->setFecha($fecha);
+                   
+                   $objDetAbast->setId_tipocombustible($_POST['id_tipocombustible']);  
+                   $objDetAbast->setAbastecedor(trim($_POST['abastecedor']));
+                   $objDetAbast->setVale_combustible(trim($_POST['vale_combustible']));
+                   $objDetAbast->setIngreso("VH"); //Vehículo
+                   
+                    if ($objDetAbast->registrarDetalleAbastecimiento())
+                    {
+                        //die(" SI ".  var_dump($ret));
+                        header("Location: ../../site/panel/ct_abastecimiento_vh.php?msj=".Funciones::encodeStrings('ok',2));
+                    }else
+                    {
+                        //die("NO");
+                        header("Location: ../../site/panel/ct_abastecimiento_vh.php?msj=".Funciones::encodeStrings('no',2));
+                    }
+                    //die(var_dump($_POST));
+                }else
+                {                    
+                    header("Location: ../../site/panel/");
+                }                
+                break;
         }
     }
 }

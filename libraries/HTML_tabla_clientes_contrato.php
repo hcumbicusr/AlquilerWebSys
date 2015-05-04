@@ -14,8 +14,7 @@ function table ()
         <td><?php echo $i+1; ?></td>                
         <td><?php echo $select[$i]['codigo']; ?></td>
         <td><?php echo $select[$i]['nombre']; ?></td>
-        <td><?php echo $select[$i]['obra']; ?></td>
-        <td><?php echo $select[$i]['tipoobra']; ?></td>              
+        <td><?php echo $select[$i]['obra']; ?></td>        
         <td><?php echo $select[$i]['f_inicio']; ?></td>
         <td><?php echo $select[$i]['f_fin']; ?></td>                                  
         <td align="center">   <!-- ?cliente == id_contrato --> 

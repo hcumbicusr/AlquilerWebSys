@@ -25,10 +25,31 @@ class ControlTrabajo {
     protected $horometro_inicio;
     protected $horometro_fin;
     protected $total_h;
+    
+    protected $valorizacion;
+    protected $hora_min;
+
+
     //--------------- Horas y minutos
     protected $hrs;
     protected $min;
     
+    public function getValorizacion() {
+        return $this->valorizacion;
+    }
+
+    public function getHora_min() {
+        return $this->hora_min;
+    }
+
+    public function setValorizacion($valorizacion) {
+        $this->valorizacion = $valorizacion;
+    }
+
+    public function setHora_min($hora_min) {
+        $this->hora_min = $hora_min;
+    }
+        
     public function getId_controltrabajo() {
         return $this->id_controltrabajo;
     }
@@ -266,7 +287,9 @@ class ControlTrabajo {
                 ."".$this->getHorometro_fin().","
                 ."".$this->getTotal_h().","
                 ."".$this->getHrs().","
-                ."".$this->getMin()."";
+                ."".$this->getMin().","
+                ."'".$this->getValorizacion()."',"
+                ."".$this->getHora_min()."";
         //die(var_dump($input));
         $result = $objDB->selectManager()->spAll($con, $procedure,$input);
         //die(var_dump($result));
@@ -313,7 +336,9 @@ class ControlTrabajo {
                 ."".$this->getHorometro_fin().","
                 ."".$this->getTotal_h().","
                 ."".$this->getHrs().","
-                ."".$this->getMin()."";
+                ."".$this->getMin().","
+                ."'".$this->getValorizacion()."',"
+                ."".$this->getHora_min()."";
         //die(var_dump($input));
         $result = $objDB->selectManager()->spAll($con, $procedure,$input);
         //die(var_dump($result));

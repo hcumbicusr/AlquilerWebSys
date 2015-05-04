@@ -12,19 +12,19 @@
         }
         
         function NumCheck(e, field) {
-            key = e.keyCode ? e.keyCode : e.which
-            if (key == 8) return true
+            key = e.keyCode ? e.keyCode : e.which;
+            if (key == 8) return true;
             if (key > 47 && key < 58) {
-              if (field.value == "") return true
-              regexp = /.[0-9]{10}$/
-              return !(regexp.test(field.value))
+              if (field.value == "") return true;
+              regexp = /.[0-9]{10}$/;
+              return !(regexp.test(field.value));
             }
             if (key == 46) {
-              if (field.value == "") return false
-              regexp = /^[0-9]+$/
-              return regexp.test(field.value)
+              if (field.value == "") return false;
+              regexp = /^[0-9]+$/;
+              return regexp.test(field.value);
             }
-            return false
+            return false;
           }
         //validar longitud de cadena
         function validarForm(formulario) {            
@@ -93,7 +93,7 @@
                             <div>
                                 <?php if(!empty($_GET['msj'])) { ?>                                
                                 <script LANGUAGE="JavaScript">
-                                    var pagina="ct_registro_guia.php";
+                                    var pagina="ct_list_guias.php";
                                     function redireccionar() 
                                     {
                                         location.href=pagina;
@@ -140,7 +140,19 @@
                                     select($name, $table, $class,true,$result[0]['id_tipocombustible']);
                                     ?>      
                                     <p class="help-block">Tipo de combustible.</p>
-                                </div>                                
+                                </div>
+                                <div class="form-group" title="<?php echo $result[0]['vehiculo']; ?>">
+                                    <label>Nro de Placa de veh&iacute;culo SURTIDOR: <label style="color: #FF0000">(*)</label> </label>
+                                    <input id="nro_placa" name="nro_placa" value="<?php echo $result[0]['placa']; ?>" class="form-control" placeholder="Nro Placa"  maxlength="20" required >
+                                    <p id="nro_placaMsg" class="help-block">El veh&iacute;culo al cual pertenece este n&uacute;mero de placa 
+                                        debe estar registrado como <b>Tipo de maquinaria</b> SURTIDOR, de lo contrario no se podr&aacute; realizar 
+                                        el registro de la gu&iacute;a.</p>
+                                </div>
+                                <div class="form-group">
+                                    <label>Nro de licencia de conducir: <label style="color: #FF0000">(*)</label> </label>
+                                    <input id="nro_licencia" name="nro_licencia"  value="<?php echo $result[0]['nro_licencia']; ?>" class="form-control" placeholder="Nro Licencia"  maxlength="20" required  title="<?php echo $result[0]['conductor']; ?>">
+                                    <p id="nro_licenciaMsg" class="help-block"><?php echo "Conductor: ". $result[0]['conductor']; ?></p>
+                                </div>
                                 <div class="form-group">
                                     <label>Fecha: <label style="color: #FF0000">(*)</label> </label>
                                     <input type="text" id="fecha" name="fecha" class="form-control fechas" placeholder="dd/mm/yyyy" required maxlength="10" value="<?php echo $fecha; ?>">
@@ -155,6 +167,11 @@
                                     <label>Abastecedor: <label style="color: #FF0000">(*)</label> </label>
                                     <input id="abastecedor" name="abastecedor" class="form-control" placeholder="Abastecedor"  maxlength="200" required value="<?php echo $result[0]['abastecedor']; ?>" >
                                     <p class="help-block">Abastecedor.</p>
+                                </div>
+                                <div class="form-group">
+                                    <label>Vale de combustible: <label style="color: #FF0000">(*)</label> </label>
+                                    <input id="vale_combustible" name="vale_combustible" class="form-control" placeholder="000000" maxlength="10" required value="<?php echo $result[0]['vale_combustible']; ?>">
+                                    <p id="msg_valeCombustible_reg" class="help-block">N&uacute;mero de Gu&iacute;a.</p>
                                 </div>
                                 
                                 <div> <label style="color: #FF0000">(*) Datos obligatorios</label></div>

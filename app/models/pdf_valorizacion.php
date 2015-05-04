@@ -103,12 +103,14 @@ class PDF extends FPDF
         
         //Texto de Título
         $this->SetFont('Arial','B',12);
-        $this->SetXY(70, 23);
+        $this->SetXY(40, 23);
         
         $desde = $_GET['desde'];
         $hasta = $_GET['hasta'];
         
-        $this->MultiCell(65, 9, utf8_decode("VALORIZACIÓN ACUMULADA DE $desde AL $hasta"), 0, 'C');
+        $this->MultiCell(120, 9, utf8_decode("VALORIZACIÓN ACUMULADA ".$fila[0]['nombre']), 0, 'C');
+        $this->Ln();$this->SetXY(70, 37);
+        $this->MultiCell(79, 9, utf8_decode(" DE $desde AL $hasta"), 0, 'C');
         
         //Texto 
         //$this->SetFont('Arial','', 10);
@@ -118,17 +120,7 @@ class PDF extends FPDF
         //DATOS
         $this->SetFont('Arial','', 9);
         $this->SetXY(20,45);
-        //while($fila = mysql_fetch_array($cabecera)){ 
-        //foreach($fila AS $key => $value) { $fila[$key] = stripslashes($value); }
-        //die(var_dump(count($cabecera)));
-        
-        for ($i = 0; $i <count($cabecera);$i++) {
-            //Usaremos CellFitSpace en lugar de Cell
-            $this->CellFitSpace(30,7,utf8_decode('Código: '." ".$fila[$i]['codigo']),1, 0 , 'L');
-            $this->CellFitSpace(140,7,utf8_decode('Nombre: '.$fila[$i]['nombre']),1, 0 , 'L');
-            //$this->CellFitSpace(40,7,'Fecha Traslado: '.utf8_decode($fila['fecha_traslado']),1, 0 , 'L');
-            //$this->CellFitSpace(40,7,'Conductor: '.utf8_decode($fila['chofer']),1, 0 , 'L');
-        }
+
         /*Datos del Manifiesto*/      
     }
     
@@ -161,7 +153,16 @@ class PDF extends FPDF
         // -------- parte de calculo
         $tot_venta = 0;        
         //------------------------------------
-        for ($i = 0;$i < count($fila); $i++) {              
+        for ($i = 0;$i < count($fila); $i++) {      
+            $tot_horas = 0;
+        
+            if($fila[$i]['valoriza'] == 'HR')
+            {
+                $tot_horas = $fila[$i]['total'];
+            }elseif($fila[$i]['valoriza'] == 'HM')
+            {
+                $tot_horas = $fila[$i]["hora_min"];
+            }
             //Usaremos CellFitSpace en lugar de Cell
             $this->CellFitSpace(110,$this->getHFila(), utf8_decode($fila[$i]['vehiculo']),1, 0 , 'L');
             $this->CellFitSpace(23,$this->getHFila(), utf8_decode(number_format($fila[$i]['total_horas'], 2)),1, 0 , 'R');
@@ -418,7 +419,7 @@ class PDF extends FPDF
             $this->datosHorizontalSec2($datosFlete);
         }
         $this->resumenTotales();
-        $this->cuentasPagar($cuentas);
+        //$this->cuentasPagar($cuentas);
     }
     //***** Aquí comienza código para ajustar texto *************
     //***********************************************************

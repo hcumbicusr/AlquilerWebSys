@@ -177,16 +177,6 @@
                                     </div>
                                 </div>
                                 
-                                <div class="form-group">
-                                    <label>Labor realizada: <label style="color: #FF0000">(*)</label> </label>
-                                    <input id="tarea" name="tarea" value="<?php echo $result[0]['tarea']; ?>" class="form-control" placeholder="Labor realizada" required>
-                                    <p class="help-block">Labor realizada.</p>
-                                </div>
-                                <div class="form-group">
-                                    <label>Observaci&oacute;n: </label>
-                                    <textarea id="observacion" name="observacion" class="form-control" placeholder="Registre alguna observaci&oacute;n" maxlength="400" ><?php echo $result[0]['observacion']; ?></textarea>
-                                    <p class="help-block">Observaci&oacute;n.</p>
-                                </div>
                                 <hr size="10" noshade="noshade" >
                                 
                                 <div class="panel panel-info">
@@ -226,16 +216,76 @@
                                             <label>Hor&oacute;metro final: <label style="color: #FF0000">(*)</label> </label>
                                             <input id="horometro_fin" name="horometro_fin" value="<?php echo $result[0]['horometro_fin']; ?>" class="form-control" placeholder="000000.00" required onkeypress="return NumCheck(event,this);" maxlength="15">
                                             <p class="help-block">Hor&oacute;metro final.</p>
-                                        </div>                                        
+                                        </div> 
+                                        <table>
+                                            <tr>
+                                                <td>
+                                                    <div class="form-group" style="width: 40%">
+                                                        <label style="color: #0000FF">Total de Horas:</label>
+                                                        <input id="total_hrs" class="form-control" >                                            
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div id="hora_minima" class="form-group" style="width: 40%">
+                                                        <label style="color: #0000FF">Horas M&iacute;nimas:</label>
+                                                        <input disabled id="total_hrs" class="form-control" value="<?php echo $result[0]['hora_min']; ?>" >                                            
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2">
+                                                    <p id="msgHoraMin" class="help-block">Total de Horas.</p>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        
+                                        <div id="radio_valoriza" class="form-group">
+                                            <label>Valorizar: </label><br>
+                                            <label class="radio-inline">
+                                                <?php if ($result[0]['valoriza'] == 'HR') { ?>
+                                                <input type="radio" id="horom" name="valorizacion" value="HR" checked> <label for="horom">Calcular con Hor&oacute;metro</label><br>
+                                                <?php }else{ ?>
+                                                <input type="radio" id="horom" name="valorizacion" value="HR"> <label for="horom">Calcular con Hor&oacute;metro</label><br>
+                                                <?php } ?>                                                
+                                            </label>
+                                            <label class="radio-inline">
+                                                <?php if ($result[0]['valoriza'] == 'HM') { ?>
+                                                <input type="radio" id="h_min" name="valorizacion" value="HM" checked> <label for="h_min">Calcular con Hora M&iacute;nima</label><br>
+                                                <?php }else{ ?>
+                                                <input type="radio" id="h_min" name="valorizacion" value="HM"> <label for="h_min">Calcular con Hora M&iacute;nima</label><br>
+                                                <?php } ?> 
+                                            </label>                                                                      
+                                        </div>
+                                        <div id="div_h_min" class="form-group" style="width: 30%">
+                                            <label>Hora M&iacute;nima: </label>
+                                            <input id="hora_min_reg" name="hora_min_reg" value="<?php echo $result[0]['hora_min']; ?>" class="form-control" placeholder="00" onkeypress="return NumCheck(event,this);" maxlength="5">
+                                            <p class="help-block">Hora M&iacute;nima.</p>
+                                        </div>
+                                        
                                     </div>                                    
                                 </div>
                                 
                                 <hr size="10" noshade="noshade" >
+                                
                                 <div class="form-group">
                                     <label>Descuento Hrs.: <label style="color: #FF0000">(*)</label> </label>
                                     <input id="descuento" name="descuento" value="<?php echo $result[0]['descuento']; ?>" class="form-control" placeholder="000000.00" required onkeypress="return NumCheck(event,this);" value="0" maxlength="15">
                                     <p class="help-block">Descuento Hrs.</p>
                                 </div>
+                                
+                                <hr size="10" noshade="noshade" >
+                                
+                                <div class="form-group">
+                                    <label>Labor realizada: <label style="color: #FF0000">(*)</label> </label>
+                                    <textarea id="tarea" name="tarea" class="form-control" placeholder="Labor realizada" required><?php echo $result[0]['tarea']; ?></textarea>
+                                    <p class="help-block">Labor realizada.</p>
+                                </div>
+                                <div class="form-group">
+                                    <label>Observaci&oacute;n: </label>
+                                    <textarea id="observacion" name="observacion" class="form-control" placeholder="Registre alguna observaci&oacute;n" maxlength="400" ><?php echo $result[0]['observacion']; ?></textarea>
+                                    <p class="help-block">Observaci&oacute;n.</p>
+                                </div>
+                                
                                 <div> <label style="color: #FF0000">(*) Datos obligatorios</label></div>
                                 <?php if (!empty($_GET['parte'])) { ?>
                                 <button id="btn_control" type="submit" class="btn btn-default">Guardar</button>

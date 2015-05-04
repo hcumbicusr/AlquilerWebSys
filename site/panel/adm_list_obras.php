@@ -13,17 +13,14 @@
                     Obras
                 </div>
                 <div class="panel-body table-responsive">
-                    <div class="dataTable_wrapper">
-                        <a href="adm_reg_obra.php" class="btn btn-primary" style="margin: 5px">Registrar</a>
+                    <div class="dataTable_wrapper">                        
                         <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                             <thead>
                                 <tr>
                                     <th>Nro</th>                                                                                                          
-                                    <th>Nombre</th>
-                                    <th>Tipo Obra</th>                                    
-                                    <th>F. Registro</th>                                    
-                                    <th>Estado</th>
-                                    <th>Opciones</th>
+                                    <th>Nombre</th>                                    
+                                    <th>F. Registro</th>                                                                        
+<!--                                    <th>Opciones</th> -->
                                 </tr>
                             </thead>
                             <tbody>
@@ -32,8 +29,7 @@
                                 table();
                                 ?>
                             </tbody>
-                        </table>
-                        <a href="adm_reg_obra.php" class="btn btn-primary" style="margin: 5px">Registrar</a>
+                        </table>                       
                     </div>
                 </div>
             </div>

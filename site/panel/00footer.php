@@ -384,6 +384,33 @@
             });
         });
         
+        $("#nro_placa_v").blur(function(){
+            var request = $.ajax({
+                method: 'post',
+                url: '../../libraries/valida_nombre.php',
+                data:{
+                    event: 'placa_v',
+                    nombre: $("#nro_placa_v").val()
+                },
+               success:function(result){                     
+                    if (result == 0)
+                    {   
+                        $("#btnRegGuia").attr("disabled",true);     
+                        $("#nro_placa_v_Msg").html("No se ha encontrado un vehículo con esta placa.<br><a href='adm_reg_vehiculo.php' target='_blank'>Registrar Veh&iacute;culo</a>").css("color","#FF0000");
+                    }else if (result == 1)
+                    {
+                        $("#nro_placa_v_Msg").text("OK").css("color","#0000FF");
+                        $("#btnRegGuia").attr("disabled",false);
+                    }else if (result == 2)
+                    {
+                        $("#btnRegGuia").attr("disabled",true);     
+                        $("#nro_placa_v_Msg").html("Ingrese una placa").css("color","#FF0000");
+                        $("#nro_placa_v").focus();
+                    }
+                }
+            });
+        });
+        
         $("#nro_licencia").blur(function(){
             var request = $.ajax({
                 method: 'post',
@@ -455,11 +482,39 @@
             });
         });
         
+        $("#vale_combustible").blur(function(){
+            var request = $.ajax({
+                method: 'post',
+                url: '../../libraries/valida_nombre.php',
+                data:{
+                    event: 'vale_comb',
+                    vale_comb: $("#vale_combustible").val()
+                },
+                success:function(result){                    
+                    if (result == 0)
+                    {   
+                        $("#msg_valeCombustible_reg").text("OK").css("color","#0000FF");
+                        $("#btnRegGuia").attr("disabled",false);                        
+                    }else if (result == 1)
+                    {
+                        $("#btnRegGuia").attr("disabled",true);     
+                        $("#msg_valeCombustible_reg").html("Esta vale ya se encuentra registrado").css("color","#FF0000");
+                    }else if (result == 2)
+                    {
+                        $("#btnRegGuia").attr("disabled",true);     
+                        $("#msg_valeCombustible_reg").html("Ingrese un número de vale").css("color","#FF0000");
+                        $("#vale_combustible").focus();
+                    }
+                }
+            });
+        });
+        
         $("#tipo_tabla").change(function (){
             //console.log($("#tipo_tabla").val());
             var request = $.ajax({
                 method: 'get',
                 url: '../../libraries/ajax_tipos.php',
+                cache: false,
                 data:{
                     nombre:  $("#tipo_tabla").val()
                 },
@@ -582,7 +637,87 @@
             $('.popup-overlay').fadeOut('slow');
             return false;
         });
+        
+       $("#hora_minima").css("display","none");
+       //Hora minima
+       $("#div_h_min").css("display","none");
        
+       //--------------------- CALCULAR LAS HORAS DEL PARTE DIARIO
+       $("#horometro_ini").keyup(function(){
+           var horas = 0;
+           var min = <?php if(!empty($anterior[0]['hora_min'])) echo $anterior[0]['hora_min']; else echo 0; ?>;
+                      
+           if ($("#horometro_fin").val().trim() > 0)
+           {     
+               horas = ($("#horometro_fin").val() - $("#horometro_ini").val()).toFixed(2);
+               $("#total_hrs").val(horas);
+               if (min > 0)
+               {
+                   $("#hora_minima").css("display","block");
+                   if (horas < min)
+                   {
+                       $("#msgHoraMin")
+                               .html("<b>La cantidad de horas de este parte está por debajo de las horas mínimas establecidas en el contrato.</b>")
+                               .css("color","#FF0000");
+                       $("#h_min").prop("checked",true);
+                       $("#div_h_min").css("display","block");
+                   }else
+                   {
+                       $("#msgHoraMin").html("");                       
+                       $("#horom").prop("checked",true);
+                       $("#div_h_min").css("display","none");
+                   }
+               }else
+               {
+                   $("#horom").prop("checked",true);
+               }
+           }
+       });
+              
+       $("#horometro_fin").keyup(function(){
+           var horas = 0;
+           var min = <?php if(!empty($anterior[0]['hora_min'])) echo $anterior[0]['hora_min']; else echo 0; ?>;           
+           
+           if ($("#horometro_ini").val().trim() > 0)
+           {
+               horas = ($("#horometro_fin").val() - $("#horometro_ini").val()).toFixed(2);
+               $("#total_hrs").val(horas);
+               if (min > 0)
+               {
+                   $("#hora_minima").css("display","block");
+                   if (horas < min)
+                   {
+                       $("#msgHoraMin")
+                               .html("<b>La cantidad de horas de este parte está por debajo de las horas mínimas establecidas en el contrato.</b>")
+                               .css("color","#FF0000");
+                       $("#h_min").prop("checked",true);
+                       $("#div_h_min").css("display","block");
+                   }else
+                   {
+                       $("#msgHoraMin").html("");                       
+                       $("#horom").prop("checked",true);
+                       $("#div_h_min").css("display","none");
+                   }
+               }else
+               {
+                   $("#horom").prop("checked",true);
+               }
+           }
+       }); 
+       
+       $("#total_hrs").keyup(function(){           
+           var horometro = parseFloat($("#horometro_ini").val()) + parseFloat($("#total_hrs").val());
+           console.log(horometro);
+           $("#horometro_fin").val(horometro.toFixed(2));
+       });
+       
+       $("#h_min").click(function(){
+           $("#div_h_min").css("display","block");
+       });
+       
+       $("#horom").click(function(){
+           $("#div_h_min").css("display","none");
+       });
        
     });
     </script>
@@ -709,7 +844,7 @@
           var hasta = $("#hasta_val").val();
         $.post("../../libraries/LINK_exportar_excel.php",
         {
-            event: 'guia',
+            event: '<?php if(!empty($_GET['rep'])) echo $_GET['rep']; else echo 0; ?>',
             desde: desde,
             hasta: hasta
         },        

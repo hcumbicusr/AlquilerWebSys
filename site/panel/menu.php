@@ -30,22 +30,7 @@
                 <a href="adm_list_trabajadores.php"><i class="fa fa-edit fa-fw"></i> Trabajadores registrados</a>
             </li>
         </ul>
-    </li>    
-    
-    <!-- SOLO ADMINISTRADOR -->
-    <li>
-        <a href="#">
-            <i class="fa fa-cubes fa-fw"></i> Obras<span class="fa arrow"></span>
-        </a>
-        <ul class="nav nav-second-level">
-            <li>
-                <a href="adm_reg_obra.php"><i class="fa fa-edit fa-fw"></i> Registro de obras</a>
-            </li>
-            <li>
-                <a href="adm_list_obras.php"><i class="fa fa-edit fa-fw"></i> Listado de obras</a>
-            </li>
-        </ul>        
-    </li>
+    </li>                
     
     <!-- SOLO ADMINISTRADOR -->
     <li>
@@ -130,11 +115,17 @@
                 <a href="ct_registro_comprobante.php"><i class="fa fa-edit fa-fw"></i> Registro de comprobantes</a>
             </li>
             <li>
+                <a href="ct_abastecimiento_vh.php"><i class="fa fa-edit fa-fw"></i> Consumo de veh&iacute;culos</a>
+            </li>
+            <li>
                 <a href="ct_list_guias.php"><i class="fa fa-edit fa-fw"></i> Listado de gu&iacute;as</a>
             </li>
             <li>
                 <a href="ct_list_comprobantes.php"><i class="fa fa-edit fa-fw"></i> Listado de comprobantes</a>
             </li>            
+            <li>
+                <a href="ct_list_vale_comb.php"><i class="fa fa-edit fa-fw"></i> Listado de vale de combustible</a>
+            </li>
         </ul>                 
     </li>
     <li>
@@ -191,5 +182,17 @@
             <?php } ?>
         </ul>
         
-    </li>        
+    </li> 
+    
+    <li>
+        <a href="adm_list_obras.php">
+            <i class="fa fa-cubes fa-fw"></i> Obras Registradas<span class="fa arrow"></span>
+        </a>        
+    </li>
+    
+    <li>
+        <a href="logs.php">
+            <i class="fa fa-eye fa-fw"></i> Registro de actividades<span class="fa arrow"></span>
+        </a>        
+    </li>
 </ul>   

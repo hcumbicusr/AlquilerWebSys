@@ -24,7 +24,7 @@ $desde = $anio."-".$mes."-".$dia;
 list($dia,$mes,$anio) = explode("/", $_GET['hasta']);
 $hasta = $anio."-".$mes."-".$dia;
 
-$input = "'$desde','$hasta'";
+$input = "'$desde','$hasta','MQ'";
 //echo "sp_listar_guias_fechas($input)";
 //die();
 $misDatos = $objDB->selectManager()->spSelect($con, "sp_listar_guias_fechas", $input); //DATOS DE LA TABLA
@@ -56,7 +56,7 @@ $detrac_2 = 0;
 $neto_1 = 0;
 $neto_2 = 0;
 
-if(count($misDatos) > 0 ){    
+if(count($misDatos) > 0){    
     if (PHP_SAPI == 'cli')
     {
         die('Este archivo solo se puede ver desde un navegador web');

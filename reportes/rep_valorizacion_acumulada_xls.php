@@ -49,7 +49,7 @@ $fech_act = utf8_decode(date("d/m/Y H:i:s"));
 
 $clienteNom = $cliente[0]['nombre'];
 $clienteCod = $cliente[0]['codigo'];
-$titulo = "VALORIZACIÓN ACUMULADA";
+$titulo = "VALORIZACIÓN ACUMULADA ";
 $subtitulo = "DE ".$_GET['desde']." AL ".$_GET['hasta'];
 $tituloFl = "FLETES DE MAQUINARIA";
 
@@ -72,12 +72,12 @@ if(count($misDatos) > 0 ){
     $objPHPExcel = new PHPExcel();    
     
     //incluir una imagen
-        $objDrawing = new PHPExcel_Worksheet_Drawing();
-        $objDrawing->setPath('../site/img/logo_rep.jpg'); //ruta
-        $objDrawing->setHeight(40); //altura
-        $objDrawing->setCoordinates('B1');
-        $objDrawing->setWorksheet($objPHPExcel->getActiveSheet()); 
-        //fin: incluir una imagen
+    $objDrawing = new PHPExcel_Worksheet_Drawing();
+    $objDrawing->setPath('../site/img/logo_rep.jpg'); //ruta
+    $objDrawing->setHeight(40); //altura
+    $objDrawing->setCoordinates('B1');
+    $objDrawing->setWorksheet($objPHPExcel->getActiveSheet()); 
+    //fin: incluir una imagen
 
     // Se asignan las propiedades del libro
     $objPHPExcel->getProperties()->setCreator("Piuramaq S.R.L.") //Autor
@@ -110,9 +110,8 @@ if(count($misDatos) > 0 ){
 
         // Se agregan los titulos del reporte
         $objPHPExcel->setActiveSheetIndex(0)
-                ->setCellValue('E1',$titulo)
-                ->setCellValue('E2',$subtitulo)
-                ->setCellValue('B3',$clienteCod."  ".$clienteNom)
+                ->setCellValue('E1',$titulo.$clienteNom)
+                ->setCellValue('E2',$subtitulo)                
                 ->setCellValue('B4','')                
                 ->setCellValue('B5',$titulosColumnas[0])
                 ->setCellValue('G5',$titulosColumnas[1])
@@ -172,6 +171,7 @@ if(count($misDatos) > 0 ){
                 ->setCellValue('I'.$n,  "=ROUND(I".($n-2)."-I".($n-1).",2)");
         $neto_1 = $n;
         $n++;
+        
         //-----------------Estilos-----------------------------------
         $estiloTituloReporte = array(
             
@@ -216,10 +216,50 @@ if(count($misDatos) > 0 ){
                 'type'		=> PHPExcel_Style_Fill::FILL_GRADIENT_LINEAR,
                 'rotation'   => 90,
                 'startcolor' => array(
+                    'rgb' => 'FFCC4B'
+                    ),
+                'endcolor'   => array(
+                    'rgb' => 'FFCC4B'
+                    )
+                ),
+            'borders' => array(
+                'top'     => array(
+                'style' => PHPExcel_Style_Border::BORDER_MEDIUM ,
+                'color' => array(
+                    'rgb' => '143860'
+                    )
+                ),
+            'bottom'     => array(
+                'style' => PHPExcel_Style_Border::BORDER_MEDIUM ,
+                'color' => array(
+                    'rgb' => '143860'
+                    )
+                )
+            ),
+            'alignment' =>  array(
+                    'horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
+                    'vertical'   => PHPExcel_Style_Alignment::VERTICAL_CENTER,
+                    'wrap'          => TRUE
+            ));
+        
+        $estiloTotales = array(
+            'font' => array(
+                'name'      => 'Arial',
+                'bold'      => true,      
+                 'size' => 10,
+
+                'color'     => array(
+                'rgb' => '000000'
+                )
+            ),
+            'fill' 	=> array(
+                'type'		=> PHPExcel_Style_Fill::FILL_GRADIENT_LINEAR,
+                'rotation'   => 90,
+                'startcolor' => array(
                     'rgb' => 'BDBDBD'
                     ),
                 'endcolor'   => array(
-                    'argb' => 'FFA4A4A4'
+                    'rgb' => 'BDBDBD'
                     )
                 ),
             'borders' => array(
@@ -253,7 +293,7 @@ if(count($misDatos) > 0 ){
                         ),
                     'fill' => array(
                         'type'		=> PHPExcel_Style_Fill::FILL_SOLID,
-                        'color'		=> array('argb' => 'FFF2F2F2')
+                        'color'		=> array('argb' => 'FFFFFFFF')
                         ),
                     'borders' => array(
                         'left'     => array(
@@ -283,13 +323,56 @@ if(count($misDatos) > 0 ){
                 )
          );
         
+         $estiloInfIzquierda = new PHPExcel_Style();
+        $estiloInfIzquierda->applyFromArray(                
+                array(
+                    'font' => array(
+                    'name'      => 'Arial',               
+                    'color'     => array(
+                            'rgb' => '000000'
+                            )
+                        ),
+                    'fill' => array(
+                        'type'		=> PHPExcel_Style_Fill::FILL_SOLID,
+                        'color'		=> array('argb' => 'FFFFFFFF')
+                        ),
+                    'borders' => array(
+                        'left'     => array(
+                            'style' => PHPExcel_Style_Border::BORDER_THIN ,
+                            'color' => array(
+                                'rgb' => '3a2a47'
+                                )
+                            ),
+                        'right'     => array(
+                            'style' => PHPExcel_Style_Border::BORDER_THIN ,
+                            'color' => array(
+                                'rgb' => '3a2a47'
+                                )
+                            ),
+                        'bottom'     => array(
+                            'style' => PHPExcel_Style_Border::BORDER_THIN ,
+                            'color' => array(
+                                'rgb' => '3a2a47'
+                                )
+                            )
+                        ),
+                    'alignment' =>  array(
+                            'horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_LEFT,
+                            'vertical'   => PHPExcel_Style_Alignment::VERTICAL_CENTER,
+                            'wrap'          => TRUE
+                    )
+                )
+         );
+        
         //-----------------------fin estilos
         
         //-------------------------valorizacion
-        $objPHPExcel->getActiveSheet()->getStyle('B3:I3')->applyFromArray($estiloTituloReporte);
+        // $objPHPExcel->getActiveSheet()->getStyle('B3:I3')->applyFromArray($estiloTituloReporte);
         $objPHPExcel->getActiveSheet()->getStyle('B5:I5')->applyFromArray($estiloTituloColumnas);		
-        $objPHPExcel->getActiveSheet()->setSharedStyle($estiloInformacion, "B$inicio_reg:I".($n-1));                
-
+        $objPHPExcel->getActiveSheet()->setSharedStyle($estiloInformacion, "B$inicio_reg:I".($n-1)); 
+        //$estiloInfIzquierda
+        $objPHPExcel->getActiveSheet()->setSharedStyle($estiloInfIzquierda, "B$inicio_reg:B".($n-1)); 
+        
         //----------ancho de columnas
          $objPHPExcel->setActiveSheetIndex(0)->getColumnDimension('B')->setWidth(13.71);
          $objPHPExcel->setActiveSheetIndex(0)->getColumnDimension('C')->setWidth(13.71);
@@ -426,7 +509,7 @@ if(count($misDatos) > 0 ){
                 ->setCellValue('I'.$n, $for_net );
         
         
-        $objPHPExcel->getActiveSheet()->getStyle("F".($n_n).":I".($n))->applyFromArray($estiloTituloColumnas);		
+        $objPHPExcel->getActiveSheet()->getStyle("F".($n_n).":I".($n))->applyFromArray($estiloTotales);		
         
         // Se asigna el nombre a la hoja
         $objPHPExcel->getActiveSheet()->setTitle($titulo);
@@ -436,12 +519,12 @@ if(count($misDatos) > 0 ){
         // Inmovilizar paneles 
         //$objPHPExcel->getActiveSheet(0)->freezePane('A4');
         //$objPHPExcel->getActiveSheet(0)->freezePaneByColumnAndRow(0,6);
-
+        
         // Se envia el archivo al navegador web, con el nombre que se indica (Excel2007)
         header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
         header('Content-Disposition: attachment;filename="Valorización_acumulada_'.$clienteNom.'.xlsx"');
         header('Cache-Control: max-age=0');
-
+        
         $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
         $objWriter->save('php://output');
         exit;

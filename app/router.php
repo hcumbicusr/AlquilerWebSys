@@ -24,8 +24,11 @@ function handler ()
                 if ($_SESSION['tipo_usuario'] == 'SA')
                 {
                     header("Location: ../site/sa/panel.php");
-                }  else {
+                }  elseif($_SESSION['tipo_usuario'] == 'CONTROLADOR' || $_SESSION['tipo_usuario'] == 'ADMINISTRADOR') {
                     header("Location: ../site/panel/");
+                }else{
+                    session_destroy();
+                    header("Location: ../index.php?msj=".Funciones::encodeStrings('Usuario no permitido', 2));
                 }
                 
             }else

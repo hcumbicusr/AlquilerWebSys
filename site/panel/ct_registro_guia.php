@@ -110,7 +110,7 @@
                                 
                                 <div class="form-group">
                                     <label>Nro de Gu&iacute;a: <label style="color: #FF0000">(*)</label> </label>
-                                    <input id="nro_guiaReg" name="nro_guiaReg" class="form-control" placeholder="000000" maxlength="20" required autofocus >
+                                    <input id="nro_guiaReg" name="nro_guiaReg" value="001-" class="form-control" placeholder="000000" maxlength="20" required >
                                     <p id="msg_nro_guiaReg" class="help-block">N&uacute;mero de Gu&iacute;a.</p>
                                 </div>
                                 <div class="form-group">
@@ -150,6 +150,11 @@
                                     <label>Abastecedor: <label style="color: #FF0000">(*)</label> </label>
                                     <input id="abastecedor" name="abastecedor" class="form-control" placeholder="Ejm.: Grifo xyz "  maxlength="200" required >
                                     <p class="help-block">Abastecedor.</p>
+                                </div>
+                                <div class="form-group">
+                                    <label>Vale de combustible: <label style="color: #FF0000">(*)</label> </label>
+                                    <input id="vale_combustible" name="vale_combustible" class="form-control" placeholder="000000" maxlength="10" required >
+                                    <p id="msg_valeCombustible_reg" class="help-block">Vale de combustible.</p>
                                 </div>
                                 
                                 <div> <label style="color: #FF0000">(*) Datos obligatorios</label></div>
